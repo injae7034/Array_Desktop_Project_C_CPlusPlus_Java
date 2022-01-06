@@ -337,11 +337,6 @@ public class Main
         //Personal테이블에 저장되어 있는 전체 Personal객체를 출력하는 쿼리문을 String에 저장
         String sql = "SELECT Personal.name, Personal.address," +
                 " Personal.telephoneNumber, personal.emailAddress FROM Personal;";
-        String name;
-        String address;
-        String telephoneNumber;
-        String emailAddress;
-
         try(//Connection(데이터베이스와 연결을 위한 객체)생성 - getConnection(연결문자열, DB-ID, DB-PW)
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306" +
                     "/AddressBook?serverTimezone=Asia/Seoul", "root", "1q2w3e");
@@ -352,17 +347,15 @@ public class Main
             // stmt.excuteUpdate(sql) : insert, update, delete ...)
             //ResultSet(SQL 질의에 의해 생성된 테이블을 저장하는 객체)
             //이제 rs에는 쿼리문에 의해서 찾은 Personal의 전체 정보가 저장됨.
-            ResultSet rs = stmt.executeQuery(sql);)
+            ResultSet rs = stmt.executeQuery(sql))
         {
             //rs에 저장된 정보를 읽어들이기 위해 rs.next()를 이용함.
             while(rs.next())//rs.next()는 rs.next()==true랑 같은뜻 다음이 있을때까지 계속해서 읽어들이고 다음이 없으면 반복에서 빠져나옴.
             {//rs의 첫번째 위치는 0번째줄이므로 rs.next()를 처음하면 처음줄로 이동하고, 두번 째 rs.next()를 하면 2번째 순서로 이동
                 // rs.next()를 통해 다음데이터로 이동했는데 다음데이터가 유효한 데이터가 아니면 Load메소드를 종료시켜버림.
-                name = rs.getString(1);
-                address = rs.getString(2);
-                telephoneNumber = rs.getString(3);
-                emailAddress = rs.getString(4);
-                addressBook.record(name, address, telephoneNumber, emailAddress);
+                //rs로부터 얻은 정보를 바탕으로 주소록에 기재하기
+                addressBook.record(rs.getString(1), rs.getString(2),
+                        rs.getString(3), rs.getString(4));
             }
         }
         catch (SQLException e)
@@ -374,10 +367,6 @@ public class Main
     //save
     public static void save()
     {
-        String sql = "SELECT Personal.code FROM Personal;";//sql에서 전체 Personal의 코드를 호출하는 문
-        String sql2 = "DELETE FROM Personal;";//sql에서 Personal 전체를 지우는 문
-        String sql3 = "INSERT INTO Personal(code, name, address, telephoneNumber, emailAddress)" +
-                " VALUES(?, ?, ?, ?, ?);";//sql에서 해당 정보를 삽입하는 문
         try(//Connection(데이터베이스와 연결을 위한 객체)생성 - getConnection(연결문자열, DB-ID, DB-PW)
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306" +
                     "/AddressBook?serverTimezone=Asia/Seoul", "root", "1q2w3e");
@@ -385,39 +374,64 @@ public class Main
             Statement stmt = con.createStatement();
             //ResultSet(SQL 질의에 의해 생성된 테이블을 저장하는 객체)생성
             //rs는 Personal의 전체 코드를 가지게 됨.
-            ResultSet rs = stmt.executeQuery(sql);
+            ResultSet rs = stmt.executeQuery("SELECT Personal.code FROM Personal;");
             //PreStatement(여러번 SQL 문을 데이터베이스에 보내기위한 객체)생성
-            //Statement stmt2 = con.createStatement();
-            PreparedStatement pstmt = con.prepareStatement(sql2);
-            PreparedStatement pstmt2 = con.prepareStatement(sql3);)
+            PreparedStatement pstmt = con.prepareStatement("DELETE FROM Personal;"))
         {
             //DB에 있는 Personal 객체 정보들을 모두 지움.
             pstmt.executeUpdate();
-            Personal personal = null;
-            String code;
-            int index = 0;
-            while(index < addressBook.getPersonals().size())
+            String sql;
+            //명함철의 명함개수만큼 반복한다.
+            for (Personal personal : addressBook.getPersonals())
             {
+                //rs를 다음 항목으로 이동시킨다.
                 rs.next();
-                code = rs.getString(1);
-                personal = addressBook.getAt(index);
-                //sql3 = String.format("INSERT INTO Personal(code, name, address, telephoneNumber, emailAddress) VALUES('%s', '%s', '%s', '%s', '%s');",
-                //        code, personal.GetName(), personal.GetAddress(), personal.GetTelephoneNumber(), personal.GetEmailAddress());
-                pstmt2.setString(1, code);
-                pstmt2.setString(2, personal.getName());
-                pstmt2.setString(3, personal.getAddress());
-                pstmt2.setString(4, personal.getTelephoneNumber());
-                pstmt2.setString(5, personal.getEmailAddress());
-                pstmt2.executeUpdate();
-                index++;
+                //DB에 명함철에서 읽은 개인정보를 추가한다.
+                sql = String.format("INSERT INTO Personal(code, name, address, telephoneNumber," +
+                                " emailAddress) VALUES('%s', '%s', '%s', '%s', '%s');",
+                        rs.getString(1), personal.getName(), personal.getAddress(),
+                        personal.getTelephoneNumber(), personal.getEmailAddress());
+                pstmt.executeUpdate(sql);
             }
-
         }
         catch (SQLException e)
         {
             System.out.println("[SQL Error : " + e.getMessage() +"]");
         }
     }
+    //getCode
+    public static String getCode()
+    {
+        String code = "P0000";
+        String newCode = null;
+        //내림차순으로 개인코드 정렬하기
+        String sql = "SELECT Personal.code FROM Personal ORDER BY code DESC;";
+        try(//Connection(데이터베이스와 연결을 위한 객체)생성 - getConnection(연결문자열, DB-ID, DB-PW)
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306" +
+                    "/AddressBook?serverTimezone=Asia/Seoul", "root", "1q2w3e");
+            // Statement 객체 생성
+            Statement stmt = con.createStatement();
+            //ResultSet(SQL 질의에 의해 생성된 테이블을 저장하는 객체)생성
+            //rs는 Personal의 전체 코드를 내림차순으로 가지게 됨.
+            ResultSet rs = stmt.executeQuery(sql))
+        {
+            //데이터가 있으면
+            if(rs.next())
+            {
+                code = rs.getString(1);//마지막코드를 읽어들임
+            }
+            code = code.substring(1,5);//5-1=4 가 되어야 숫자 4개를 가져옴 (1,4)는 앞에 0만 3개 가져오므로 오류가남.
+            int number = Integer.parseInt(code);
+            number++;
+            newCode = String.format("P%04d", number);
+        }
+        catch (SQLException e)
+        {
+            System.out.println("[SQL Error : " + e.getMessage() +"]");
+        }
+        return newCode;
+    }
+    /*
     //getCode
     public static String getCode()
     {
@@ -434,24 +448,24 @@ public class Main
             //rs는 Personal의 전체 코드를 가지게 됨.
             ResultSet rs = stmt.executeQuery(sql);)
         {
-             /* DELETE했을 경우에 문제가 생김
-             rs.last();
-             int number = rs.getRow();
-             number++;
-             code = String.format("P%04d", number);
-             */
-            int number;
+             // DELETE했을 경우에 문제가 생김
+             //rs.last();
+             //int number = rs.getRow();
+             //number++;
+             //code = String.format("P%04d", number);
+
+            //int number;
             if(rs.last())//마지막으로 이동한뒤에 그 데이터가 유효하면 선택문에 들어가게됨
             //rs.last()는 rs.last()==true와 같은 뜻
             //마지막으로 이동한뒤에 그 데이터가 유효하면 true이므로 선택문에 들어가게 되고
             //마지막으로 이동했는데 데이터가 없으면 false이므로 선택문에 들어가지않음
             {
-                code = rs.getString(1);//마지막코드를 읽어들임
+              //  code = rs.getString(1);//마지막코드를 읽어들임
             }
-            code = code.substring(1,5);//5-1=4 가 되어야 숫자 4개를 가져옴 (1,4)는 앞에 0만 3개 가져오므로 오류가남.
-            number = Integer.parseInt(code);
-            number++;
-            newCode = String.format("P%04d", number);
+            //code = code.substring(1,5);//5-1=4 가 되어야 숫자 4개를 가져옴 (1,4)는 앞에 0만 3개 가져오므로 오류가남.
+            //number = Integer.parseInt(code);
+            //number++;
+            //newCode = String.format("P%04d", number);
         }
         catch (SQLException e)
         {
@@ -459,6 +473,7 @@ public class Main
         }
         return newCode;
     }
+    */
 
     public static void insert(int index)
     {
@@ -466,15 +481,11 @@ public class Main
                 " VALUES(?, ?, ?, ?, ?);";
         try(Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306" +
                 "/AddressBook?serverTimezone=Asia/Seoul", "root", "1q2w3e");
-            PreparedStatement pstmt = con.prepareStatement(sql);)
+            PreparedStatement pstmt = con.prepareStatement(sql))
         {
             Personal personal = addressBook.getAt(index);
-            String code = getCode();
-            //String sql = String.format("INSERT INTO Personal(code, name, address, telephoneNumber, emailAddress) VALUES('%s', '%s', '%s', '%s', '%s');",
-            //        code, personal.GetName(), personal.GetAddress(), personal.GetTelephoneNumber(), personal.GetEmailAddress());
             // PreParedStatement 객체 생성, 객체 생성시 SQL 문장 저장
-            //pstmt = con.prepareStatement(sql);
-            pstmt.setString(1, code);
+            pstmt.setString(1, getCode());
             pstmt.setString(2, personal.getName());
             pstmt.setString(3, personal.getAddress());
             pstmt.setString(4, personal.getTelephoneNumber());
@@ -495,7 +506,7 @@ public class Main
                 "//localhost:3306/AddressBook?serverTimezone=Asia/Seoul",
                 "root", "1q2w3e");
             PreparedStatement pstmt = con.prepareStatement(sql);
-            ResultSet rs = pstmt.executeQuery();)
+            ResultSet rs = pstmt.executeQuery())
         {
             Personal personal = addressBook.getAt(index);
             String code = null;
@@ -559,7 +570,7 @@ public class Main
         try(Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306" +
                 "/AddressBook?serverTimezone=Asia/Seoul", "root", "1q2w3e");
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);)
+            ResultSet rs = stmt.executeQuery(sql))
         {
             String code = null;
             int i= 0;
@@ -579,10 +590,6 @@ public class Main
     }
     public static void replace()
     {
-        String sql = "SELECT Personal.code FROM Personal;";//sql에서 전체 Personal의 코드를 호출하는 문
-        String sql2 = "DELETE FROM Personal;";//sql에서 Personal 전체를 지우는 문
-        String sql3 = "INSERT INTO Personal(code, name, address, telephoneNumber, emailAddress)" +
-                " VALUES(?, ?, ?, ?, ?);";//sql에서 해당 정보를 삽입하는 문
         try(//Connection(데이터베이스와 연결을 위한 객체)생성 - getConnection(연결문자열, DB-ID, DB-PW)
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306" +
                     "/AddressBook?serverTimezone=Asia/Seoul", "root", "1q2w3e");
@@ -590,38 +597,30 @@ public class Main
             Statement stmt = con.createStatement();
             //ResultSet(SQL 질의에 의해 생성된 테이블을 저장하는 객체)생성
             //rs는 Personal의 전체 코드를 가지게 됨.
-            ResultSet rs = stmt.executeQuery(sql);
+            ResultSet rs = stmt.executeQuery("SELECT Personal.code FROM Personal;");
             //PreStatement(여러번 SQL 문을 데이터베이스에 보내기위한 객체)생성
-            PreparedStatement pstmt = con.prepareStatement(sql2);
-            PreparedStatement pstmt2 = con.prepareStatement(sql3);
-        )
+            PreparedStatement pstmt = con.prepareStatement("DELETE FROM Personal;"))
         {
             //DB에 있는 Personal 객체 정보들을 모두 지움.
             pstmt.executeUpdate();
-            Personal personal = null;
-            String code;
-            int index = 0;
-            while(index < addressBook.getPersonals().size())
+            String sql;
+            //명함철의 명함개수만큼 반복한다.
+            for (Personal personal : addressBook.getPersonals())
             {
+                //rs를 다음 항목으로 이동시킨다.
                 rs.next();
-                code = rs.getString(1);
-                personal = addressBook.getAt(index);
-                //sql3 = String.format("INSERT INTO Personal(code, name, address, telephoneNumber, emailAddress) VALUES('%s', '%s', '%s', '%s', '%s');",
-                //        code, personal.GetName(), personal.GetAddress(), personal.GetTelephoneNumber(), personal.GetEmailAddress());
-                pstmt2.setString(1, code);
-                pstmt2.setString(2, personal.getName());
-                pstmt2.setString(3, personal.getAddress());
-                pstmt2.setString(4, personal.getTelephoneNumber());
-                pstmt2.setString(5, personal.getEmailAddress());
-                pstmt2.executeUpdate();
-                index++;
+                //DB에 명함철에서 읽은 개인정보를 추가한다.
+                sql = String.format("INSERT INTO Personal(code, name, address, telephoneNumber," +
+                                " emailAddress) VALUES('%s', '%s', '%s', '%s', '%s');",
+                        rs.getString(1), personal.getName(), personal.getAddress(),
+                        personal.getTelephoneNumber(), personal.getEmailAddress());
+                pstmt.executeUpdate(sql);
             }
-
         }
         catch (SQLException e)
         {
             System.out.println("[SQL Error : " + e.getMessage() +"]");
         }
     }
-//데이터베이스 응용프로그래밍 끝
+    //데이터베이스 응용프로그래밍 끝
 }
