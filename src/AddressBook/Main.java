@@ -151,50 +151,64 @@ public  class Main
             //찾은 게 있으면
             if (indexes.size() > 0)
             {
-                System.out.printf("\t================================================================================\n");
-                System.out.printf("\t번호 : ");
-                //nextInt대신에 nextLine을 써야 뒤에서 탈이 안남.
-                String stringIndex = scanner.nextLine();
-                index = Integer.valueOf(stringIndex);
-                System.out.printf("\t--------------------------------------------------------------------------------\n");
-                System.out.println("\t변경할 사항만 입력하시고, 변경하지 않는 사항은 Enter키를 입력해주세요.");
-                System.out.printf("\t--------------------------------------------------------------------------------\n");
-                index = index - 1;//배열첨자는 실제입력받은 숫자보다 1이 작기때문에
-                System.out.printf("\t주      소 : %s ",
-                        addressBook.getPersonals().get(indexes.get(index)).getAddress());
-                String address = scanner.nextLine();
-                if (address.equals("") == true)
+                while(true)
                 {
-                    address = addressBook.getPersonals().get(indexes.get(index)).getAddress();
-                }
-                System.out.printf("\t전화  번호 : %s ",
-                        addressBook.getPersonals().get(indexes.get(index)).getTelephoneNumber());
-                String telephoneNumber = scanner.nextLine();
-                if (telephoneNumber.equals("") == true)
-                {
-                    telephoneNumber = addressBook.getPersonals().get(indexes.get(index)).getTelephoneNumber();
-                }
-                System.out.printf("\t이메일주소 : %s ",
-                        addressBook.getPersonals().get(indexes.get(index)).getEmailAddress());
-                String emailAddress = scanner.nextLine();
-                if (emailAddress.equals("") == true)
-                {
-                    emailAddress = addressBook.getPersonals().get(indexes.get(index)).getEmailAddress();
-                }
-                System.out.printf("\t---------------------------------------------------------------------------------\n");
-                System.out.printf("\t고치시겠습니까?(Y/N) ");
-                String correcting = scanner.nextLine();
-                if (correcting.equals("Y") == true || correcting.equals("y") == true)
-                {
-                    index = addressBook.correct(indexes.get(index), address, telephoneNumber, emailAddress);
-                    System.out.printf("\t==============================================================================\n");
-                    System.out.printf("\t번호\t\t성명\t\t주소\t\t\t\t전화번호\t\t\t이메일주소\n");
-                    System.out.printf("\t------------------------------------------------------------------------------\n");
-                    System.out.printf("\t%d\t\t%s\t%s\t\t%s\t\t%s\n", index + 1,
-                            addressBook.getPersonals().get(index).getName(),
-                            addressBook.getPersonals().get(index).getAddress(),
-                            addressBook.getPersonals().get(index).getTelephoneNumber(),
-                            addressBook.getPersonals().get(index).getEmailAddress());
+                    System.out.printf("\t================================================================================\n");
+                    System.out.printf("\t번호 : ");
+                    //nextInt대신에 nextLine을 써야 뒤에서 탈이 안남.
+                    String stringIndex = scanner.nextLine();
+                    index = Integer.valueOf(stringIndex);
+                    index = index - 1;//배열첨자는 실제입력받은 숫자보다 1이 작기때문에
+                    //번호를 제대로 눌렀으면(번호가 배열길이를 넘지 않고 음수가 아니면)
+                    if(index < indexes.size() && index >= 0)
+                    {
+                        System.out.printf("\t--------------------------------------------------------------------------------\n");
+                        System.out.println("\t변경할 사항만 입력하시고, 변경하지 않는 사항은 Enter키를 입력해주세요.");
+                        System.out.printf("\t--------------------------------------------------------------------------------\n");
+                        System.out.printf("\t주      소 : %s ",
+                                addressBook.getPersonals().get(indexes.get(index)).getAddress());
+                        String address = scanner.nextLine();
+                        if (address.equals("") == true)
+                        {
+                            address = addressBook.getPersonals().get(indexes.get(index)).getAddress();
+                        }
+                        System.out.printf("\t전화  번호 : %s ",
+                                addressBook.getPersonals().get(indexes.get(index)).getTelephoneNumber());
+                        String telephoneNumber = scanner.nextLine();
+                        if (telephoneNumber.equals("") == true)
+                        {
+                            telephoneNumber = addressBook.getPersonals().get(indexes.get(index)).getTelephoneNumber();
+                        }
+                        System.out.printf("\t이메일주소 : %s ",
+                                addressBook.getPersonals().get(indexes.get(index)).getEmailAddress());
+                        String emailAddress = scanner.nextLine();
+                        if (emailAddress.equals("") == true)
+                        {
+                            emailAddress = addressBook.getPersonals().get(indexes.get(index)).getEmailAddress();
+                        }
+                        System.out.printf("\t---------------------------------------------------------------------------------\n");
+                        System.out.printf("\t고치시겠습니까?(Y/N) ");
+                        String correcting = scanner.nextLine();
+                        if (correcting.equals("Y") == true || correcting.equals("y") == true)
+                        {
+                            index = addressBook.correct(indexes.get(index), address, telephoneNumber, emailAddress);
+                            System.out.printf("\t==============================================================================\n");
+                            System.out.printf("\t번호\t\t성명\t\t주소\t\t\t\t전화번호\t\t\t이메일주소\n");
+                            System.out.printf("\t------------------------------------------------------------------------------\n");
+                            System.out.printf("\t%d\t\t%s\t%s\t\t%s\t\t%s\n", index + 1,
+                                    addressBook.getPersonals().get(index).getName(),
+                                    addressBook.getPersonals().get(index).getAddress(),
+                                    addressBook.getPersonals().get(index).getTelephoneNumber(),
+                                    addressBook.getPersonals().get(index).getEmailAddress());
+                        }
+                        break;//무한반복문 탈출함.
+                    }
+                    //번호를 잘못눌렀으면
+                    else
+                    {
+                        System.out.println("\t번호를 잘못 선택하셨습니다.");
+                        System.out.println("\t다시 번호를 선택해주세요.");
+                    }
                 }
             }
             System.out.printf("\t======================================================================================\n");
@@ -231,28 +245,42 @@ public  class Main
             }
             if (indexes.size() > 0)
             {
-                System.out.printf("\t================================================================================\n");
-                System.out.printf("\t번호 : ");
-                //nextInt대신에 nextLine을 써야 뒤에서 탈이 안남.
-                String stringIndex = scanner.nextLine();
-                index = Integer.valueOf(stringIndex);
-                System.out.printf("\t--------------------------------------------------------------------------------\n");
-                index = index - 1;
-                System.out.printf("\t번호\t\t성명\t\t주소\t\t\t\t전화번호\t\t\t이메일주소\n");
-                System.out.printf("\t------------------------------------------------------------------------------\n");
-                System.out.printf("\t%d\t\t%s\t%s\t\t%s\t\t%s\n", index + 1,
-                        addressBook.getPersonals().get(indexes.get(index)).getName(),
-                        addressBook.getPersonals().get(indexes.get(index)).getAddress(),
-                        addressBook.getPersonals().get(indexes.get(index)).getTelephoneNumber(),
-                        addressBook.getPersonals().get(indexes.get(index)).getEmailAddress());
-                System.out.printf("\t================================================================================\n");
-                System.out.printf("\t지우시겠습니까?(Y/N) ");
-                String erasing = scanner.nextLine();
-                if (erasing.equals("Y") == true || erasing.equals("y") == true)
+                while(true)
                 {
-                    index = addressBook.erase(indexes.get(index));
-                    System.out.printf("\t--------------------------------------------------------------------------------\n");
-                    System.out.printf("\t지워졌습니다.\n");
+                    System.out.printf("\t================================================================================\n");
+                    System.out.printf("\t번호 : ");
+                    //nextInt대신에 nextLine을 써야 뒤에서 탈이 안남.
+                    String stringIndex = scanner.nextLine();
+                    index = Integer.valueOf(stringIndex);
+                    index = index - 1;//배열첨자는 실제입력받은 숫자보다 1이 작기때문에
+                    //번호를 제대로 눌렀으면(번호가 배열길이를 넘지 않고 음수가 아니면)
+                    if(index < indexes.size() && index >= 0)
+                    {
+                        System.out.printf("\t--------------------------------------------------------------------------------\n");
+                        System.out.printf("\t번호\t\t성명\t\t주소\t\t\t\t전화번호\t\t\t이메일주소\n");
+                        System.out.printf("\t------------------------------------------------------------------------------\n");
+                        System.out.printf("\t%d\t\t%s\t%s\t\t%s\t\t%s\n", index + 1,
+                                addressBook.getPersonals().get(indexes.get(index)).getName(),
+                                addressBook.getPersonals().get(indexes.get(index)).getAddress(),
+                                addressBook.getPersonals().get(indexes.get(index)).getTelephoneNumber(),
+                                addressBook.getPersonals().get(indexes.get(index)).getEmailAddress());
+                        System.out.printf("\t================================================================================\n");
+                        System.out.printf("\t지우시겠습니까?(Y/N) ");
+                        String erasing = scanner.nextLine();
+                        if (erasing.equals("Y") == true || erasing.equals("y") == true)
+                        {
+                            addressBook.erase(indexes.get(index));
+                            System.out.printf("\t--------------------------------------------------------------------------------\n");
+                            System.out.printf("\t지워졌습니다.\n");
+                        }
+                        break;//무한반복문 탈출함.
+                    }
+                    //번호를 잘못눌렀으면
+                    else
+                    {
+                        System.out.println("\t번호를 잘못 선택하셨습니다.");
+                        System.out.println("\t다시 번호를 선택해주세요.");
+                    }
                 }
             }
             System.out.printf("\t================================================================================\n");
