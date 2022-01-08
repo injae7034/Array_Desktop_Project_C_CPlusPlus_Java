@@ -1,4 +1,4 @@
-# Desktop_Project_AddressBook,WordBook,Array
+# 배열 자료구조를 활용한 주소록과 단어장 프로젝트(C와 C++ 그리고 java로 각각 구현)
 <br><br>
 C언어와 C++, 그리고 java를 이용해서 Desktop Project를 구현하였습니다.<br><br>
 먼저 주소록(AddressBook)과 단어장(WordBook)을 자료구조 배열을 이용하여 구현하였습니다.<br><br>
