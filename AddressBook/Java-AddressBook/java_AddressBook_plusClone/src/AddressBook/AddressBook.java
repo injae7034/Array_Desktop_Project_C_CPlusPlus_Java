@@ -248,23 +248,33 @@ public class AddressBook  implements Cloneable
             }
         });
     }
+    //깊은 복사
     @Override
     public AddressBook clone() throws CloneNotSupportedException
     {
         //깊은 복사
         //AddressBook addressBook = (AddressBook)super.clone();
         AddressBook addressBook = new AddressBook();
-        Personal deepCopyPersonal = null;
         //기존의 원본을 clone하여 ArrayList를 생성한 뒤에 새로운 객체로 배열요소 수정하기
         //addressBook.personals = (ArrayList<Personal>)this.personals.clone();
-        addressBook.personals = new ArrayList<Personal>();
-        for(int i = 0; i < this.personals.size(); i++)
+        for(Personal personal : this.personals)
         {
-            deepCopyPersonal = new Personal(this.getAt(i));
             //addressBook.personals.set(i, deepCopyPersonal);
-            addressBook.personals.add(deepCopyPersonal);
+            addressBook.personals.add(personal.clone());
         }
         return addressBook;
+    }
+    //AddressBook에 기재된 전체 Personal을 순차적으로 출력하기
+    public void printAddressBook(int number)
+    {
+        Personal personal = null;
+        int index = 0;
+        while(index < this.personals.size())
+        {
+            personal = this.getAt(index);
+            System.out.printf(" %d.%d ", number, index + 1).println(personal);
+            index++;
+        }
     }
     //인스턴스 멤버
     private ArrayList<Personal> personals;

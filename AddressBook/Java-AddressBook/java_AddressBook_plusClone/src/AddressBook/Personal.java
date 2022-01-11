@@ -58,6 +58,12 @@ public class Personal implements Cloneable
     {
         return (Personal)super.clone();
     }
+    @Override
+    public String toString()
+    {
+        return new String(this.name + ", " + this.address + ", " + this.telephoneNumber + ", "
+                + this.emailAddress);
+    }
 
     //이름 정보 가져오기
     public String getName()
