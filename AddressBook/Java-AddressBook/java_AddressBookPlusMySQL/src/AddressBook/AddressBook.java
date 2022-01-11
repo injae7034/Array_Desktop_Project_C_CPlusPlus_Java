@@ -116,7 +116,6 @@ public class AddressBook  implements Cloneable
         AddressBook addressBook = new AddressBook();
         //기존의 원본을 clone하여 ArrayList를 생성한 뒤에 새로운 객체로 배열요소 수정하기
         //addressBook.personals = (ArrayList<Personal>)this.personals.clone();
-        addressBook.personals = new ArrayList<Personal>();
         for(Personal personal : this.personals)
         {
             //addressBook.personals.set(i, deepCopyPersonal);
