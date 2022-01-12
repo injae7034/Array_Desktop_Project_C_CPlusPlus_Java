@@ -412,14 +412,17 @@ public class Main
             //명함철의 명함개수만큼 반복한다.
             for (Personal personal : addressBook.getPersonals())
             {
-                //rs를 다음 항목으로 이동시킨다.
-                rs.next();
-                //DB에 명함철에서 읽은 개인정보를 추가한다.
-                sql = String.format("INSERT INTO Personal(code, name, address, telephoneNumber," +
-                                " emailAddress) VALUES('%s', '%s', '%s', '%s', '%s');",
-                        rs.getString(1), personal.getName(), personal.getAddress(),
-                        personal.getTelephoneNumber(), personal.getEmailAddress());
-                pstmt.executeUpdate(sql);
+                //rs에 다음데이터가 있으면
+                if(rs.next() == true)
+                {
+
+                    //DB에 명함철에서 읽은 개인정보를 추가한다.
+                    sql = String.format("INSERT INTO Personal(code, name, address, telephoneNumber," +
+                                    " emailAddress) VALUES('%s', '%s', '%s', '%s', '%s');",
+                            rs.getString(1), personal.getName(), personal.getAddress(),
+                            personal.getTelephoneNumber(), personal.getEmailAddress());
+                    pstmt.executeUpdate(sql);
+                }
             }
         }
         catch (SQLException e)
