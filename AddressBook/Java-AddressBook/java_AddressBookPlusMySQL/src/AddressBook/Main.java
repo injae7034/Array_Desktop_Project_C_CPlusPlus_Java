@@ -412,8 +412,8 @@ public class Main
             //명함철의 명함개수만큼 반복한다.
             for (Personal personal : addressBook.getPersonals())
             {
-                //rs에 다음데이터가 있으면
-                if(rs.next() == true)
+                //rs를 다음으로 이동시키고 다음데이터가 있으면
+                if(rs.next())
                 {
 
                     //DB에 명함철에서 읽은 개인정보를 추가한다.
@@ -544,8 +544,12 @@ public class Main
             int i= 0;
             while(i <= index)
             {
-                rs.next();
-                code = rs.getString(1);
+                //rs를 다음으로 이동시키고 다음이 있으면
+                if(rs.next())
+                {
+                    //개인 코드를 구한다.
+                    code = rs.getString(1);
+                }
                 i++;
             }
             sql = String.format("UPDATE Personal SET address='%s'," +
@@ -607,8 +611,12 @@ public class Main
             int i= 0;
             while(i <= index)
             {
-                rs.next();
-                code = rs.getString(1);
+                //rs를 다음으로 이동시키고 다음이 있으면
+                if(rs.next())
+                {
+                    //개인 코드를 구한다.
+                    code = rs.getString(1);
+                }
                 i++;
             }
             sql = String.format("DELETE FROM Personal WHERE code = '%s';", code);
