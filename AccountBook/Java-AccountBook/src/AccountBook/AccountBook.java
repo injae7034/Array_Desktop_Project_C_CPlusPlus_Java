@@ -127,7 +127,7 @@ public class AccountBook
         //같은 date들의 위치를 저장할 임시공간인 ArrayList 생성하기
         ArrayList<Integer> sameDates = null;
         //fromDate가 toDate보다 작거나 같은동안 반복한다.
-        while(fromDate.isGreaterThan(toDate) == true)
+        while(fromDate.isGreaterThan(toDate) == false)
         {
             //가계부(AccountBook)에서 fromDate와 같은 Account객체들의
             //위치를 찾아서 그 위치를 저장한 배열을 반환한다.
@@ -139,7 +139,7 @@ public class AccountBook
                 indexes.add(sameDates.get(i));
             }
             //fromDate를 1일 증가시켜준다.
-            Date.nextDate(fromDate, 1);
+            fromDate = Date.nextDate(fromDate, 1);
         }
         return indexes;
     }
@@ -152,7 +152,7 @@ public class AccountBook
         //같은 date들의 위치를 저장할 임시공간인 ArrayList 생성하기
         ArrayList<Integer> sameDates = null;
         //fromDate가 toDate보다 작거나 같은동안 반복한다.
-        while(fromDate.isGreaterThan(toDate) == true)
+        while(fromDate.isGreaterThan(toDate) == false)
         {
             //가계부(AccountBook)에서 fromDate와 같은 date를 가진
             //Account객체들의 위치를 찾아서 그 위치를 저장한 배열을 반환한다.
@@ -168,7 +168,7 @@ public class AccountBook
                 }
             }
             //fromDate를 1일 증가시켜준다.
-            Date.nextDate(fromDate, 1);
+            fromDate = Date.nextDate(fromDate, 1);
         }
         return indexes;
     }
@@ -200,7 +200,7 @@ public class AccountBook
     }
 
     //Calculate
-    public Map<String, Integer> Calculate(Date fromDate, Date toDate)
+    public Map<String, Integer> calculate(Date fromDate, Date toDate)
     {
         //반환할 해쉬맵을 생성한다.
         Map<String, Integer> totalOutcomes = new LinkedHashMap<>();
@@ -210,7 +210,7 @@ public class AccountBook
         int totalOutgo = 0;//총지출을 저장할 공간
         Account account = null;//Account객체를 담을 임시공간
         //fromDate가 toDate보다 작거나 같은동안 반복한다.
-        while(fromDate.isGreaterThan(toDate) == true)
+        while(fromDate.isGreaterThan(toDate) == false)
         {
             //가계부(AccountBook)에서 fromDate와 같은 date를 가진
             //Account객체들의 위치를 찾아서 그 위치를 저장한 배열을 반환한다.
@@ -232,7 +232,7 @@ public class AccountBook
                 }
             }
             //fromDate를 1일 증가시켜준다.
-            Date.nextDate(fromDate, 1);
+            fromDate = Date.nextDate(fromDate, 1);
         }
         //총잔액(totalBalance)을 구한다.
         int totalBalance = totalIncome - totalOutgo;

@@ -1,6 +1,7 @@
 package AccountBook;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class Main
 {
@@ -81,7 +82,7 @@ public class Main
         }
         //15. 11/25 날짜로 찾은 것 중에 4번째의 교통비의 금액(amount)을 수정한다.
         System.out.println("15. 금액(amount) 수정 : ");
-        //교통비 amount 수정 전에 뒤에 객체들 출력해서 balance확인하기
+        //교통비 amount 수정 전에 뒤에 객체들 출력해서 balance 확인하기
         System.out.println("15.1 금액(amount)을 수정하기 전에 이후 객체 전체 출력 : ");
         for(int i = indexes.get(3); i < accountBook.getLength(); i++)
         {
@@ -91,7 +92,7 @@ public class Main
                 accountBook.getAt(indexes.get(3)).getRemarks());
         System.out.println("15.2 11/25 날짜로 찾은 것 중에 4번째의 교통비의 금액(amount)을 수정 : ");
         System.out.println(accountBook.getAt(index));
-        System.out.println("15.3 금액 수정 후에 뒤에 위치한 Account객체들의 잔액 바뀌는지 확인 : ");
+        System.out.println("15.3 금액 수정 후에 뒤에 위치한 Account 객체들의 잔액 바뀌는지 확인 : ");
         for(int i = indexes.get(3); i < accountBook.getLength(); i++)
         {
             System.out.println(accountBook.getAt(i));
@@ -105,7 +106,7 @@ public class Main
         }
         //17. "용돈"으로 찾은 것 중에서 금액(amount)을 수정한다.
         System.out.println("17. 금액(amount) 수정 : ");
-        //교통비 amount 수정 전에 뒤에 객체들 출력해서 balance확인하기
+        //교통비 amount 수정 전에 뒤에 객체들 출력해서 balance 확인하기
         System.out.println("17.1 금액(amount)을 수정하기 전에 이후 객체 전체 출력 : ");
         for(int i = indexes.get(0); i < accountBook.getLength(); i++)
         {
@@ -115,7 +116,7 @@ public class Main
                 accountBook.getAt(indexes.get(0)).getRemarks());
         System.out.println("17.2 월급 금액(amount)을 수정 : ");
         System.out.println(accountBook.getAt(index));
-        System.out.println("17.3 월급 금액 수정 후에 뒤에 위치한 Account객체들의 잔액 바뀌는지 확인 : ");
+        System.out.println("17.3 월급 금액 수정 후에 뒤에 위치한 Account 객체들의 잔액 바뀌는지 확인 : ");
         for(int i = indexes.get(0); i < accountBook.getLength(); i++)
         {
             System.out.println(accountBook.getAt(i));
@@ -134,50 +135,21 @@ public class Main
         {
             System.out.println(accountBook.getAt(indexes.get(i)));
         }
-        /*
-        //22. 계산한다.
-        Currency totalIncome;
-        Currency totalOutgo;
-        Currency totalBalance;
-        accountBook.Calculate(Date((char*)"20201101"), Date((char*)"20201111"), &totalIncome,
-		&totalOutgo, &totalBalance);
-        cout << "총수입 총지출 총잔액 계산하기" << endl;
-        cout << "총수입 : " << totalIncome << endl;
-        cout << "총지출 : " << totalOutgo << endl;
-        cout << "총잔액 : " << totalBalance << endl;
-        //23. 일자들로 찾는다.
-        cout << "일자들로 찾기" << endl;
-        accountBook.Find(Date((char*)"20201107"), Date((char*)"20201111"), &indexes, &count);
-        i = 0;
-        while (i < count)
+        //20. 기간(20211127-20211130)에서 적요(중고판매)로 찾는다.
+        System.out.println("20. 기간(20211127-20211130)에서 적요(중고판매)로 찾기 : ");
+        indexes = accountBook.find(new Date(2021, 11, 27),
+                new Date(2021, 11, 30), "중고판매");
+        for(int i = 0; i < indexes.size(); i++)
         {
-            account = accountBook.GetAt(indexes[i]);
-            cout << fixed;
-            cout.precision(0);
-            cout << account->GetDate() << ", "
-                    << account->GetBriefs() << ", "
-                    << account->GetAmount() << ", "
-                    << account->GetBalance() << ", "
-                    << account->GetRemarks() << endl;
-            i++;
+            System.out.println(accountBook.getAt(indexes.get(i)));
         }
-
-        //24.  일자들과 적요로 찾는다.
-        cout << "일자들과 적요로 찾기" << endl;
-        accountBook.Find(Date((char*)"20201102"), Date((char*)"20201111"), "중고판매", &indexes, &count);
-        i = 0;
-        while (i < count)
-        {
-            account = accountBook.GetAt(indexes[i]);
-            cout << fixed;
-            cout.precision(0);
-            cout << account->GetDate() << ", "
-                    << account->GetBriefs() << ", "
-                    << account->GetAmount() << ", "
-                    << account->GetBalance() << ", "
-                    << account->GetRemarks() << endl;
-            i++;
-        }
-         */
+        //21. 전체기간동안 가계부를 계산한다.
+        System.out.print("21. 전체기간동안 가계부 계산하기 : ");
+        Map<String, Integer> totalOutcomes = accountBook.calculate(new Date("20211125"),
+                new Date(2021, 11, 30));
+        System.out.println(totalOutcomes);
+        //22. 가계부 전체를 출력한다.
+        System.out.println("22. 가계부 전체 출력하기 : ");
+        accountBook.printAllAccounts();
     }
 }
