@@ -1,7 +1,6 @@
 package AccountBook;
 
 import java.text.NumberFormat;
-import java.util.Currency;
 import java.util.Locale;
 
 public abstract class Account
