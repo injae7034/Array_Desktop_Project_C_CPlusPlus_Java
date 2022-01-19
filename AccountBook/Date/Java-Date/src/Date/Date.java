@@ -1,5 +1,4 @@
 package Date;
-import org.jetbrains.annotations.NotNull;
 
 import java.time.Month;
 import  java.time.DayOfWeek;
@@ -12,15 +11,6 @@ public class Date implements Cloneable
     private Month month;
     private int day;
     private DayOfWeek dayOfWeek;
-    //디폴트생성자
-    public Date()
-    {
-        LocalDate localDate = LocalDate.now();
-        this.year = localDate.getYear();
-        this.month = localDate.getMonth();
-        this.day = localDate.getDayOfMonth();
-        this.dayOfWeek = localDate.getDayOfWeek();
-    }
     //매개변수를 가지는 생성자
     public Date(int year, int month, int day)
     {
@@ -30,7 +20,7 @@ public class Date implements Cloneable
         this.dayOfWeek = LocalDate.of(year, month, day).getDayOfWeek();
     }
     //문자열을 매개변수로 가지는 생성자
-    public Date(@NotNull String date)
+    public Date(String date)
     {
         LocalDate localDate = LocalDate.of(Integer.parseInt(date.substring(0,4)),
                 Integer.parseInt(date.substring(4,6)),Integer.parseInt(date.substring(6,8)));
@@ -40,42 +30,42 @@ public class Date implements Cloneable
         this.dayOfWeek = localDate.getDayOfWeek();
     }
     //오늘 날짜 생성
-    public static @NotNull Date today()
+    public static Date today()
     {
         LocalDate localDate = LocalDate.now();
         return new Date(localDate.getYear(), localDate.getMonth().getValue(),
                 localDate.getDayOfMonth());
     }
     //어제 날짜 생성
-    public static @NotNull Date yesterday()
+    public static Date yesterday()
     {
         LocalDate yesterday = LocalDate.now().minusDays(1);
         return  new Date(yesterday.getYear(), yesterday.getMonth().getValue(),
                 yesterday.getDayOfMonth());
     }
     //내일 날짜 생성
-    public static @NotNull Date tomorrow()
+    public static Date tomorrow()
     {
         LocalDate tomorrow = LocalDate.now().plusDays(1);
         return new Date(tomorrow.getYear(), tomorrow.getMonth().getValue(),
                 tomorrow.getDayOfMonth());
     }
     //오늘 날짜기준으로 매개변수로 입력한 날짜만큼 이전 날짜 생성
-    public static @NotNull Date previousDate(int days)
+    public static Date previousDate(int days)
     {
         LocalDate previousDate = LocalDate.now().minusDays(days);
         return new Date(previousDate.getYear(), previousDate.getMonth().getValue(),
                 previousDate.getDayOfMonth());
     }
     //오늘 날짜기준으로 매개변수로 입력한 날짜만큼 이후 날짜 생성
-    public static @NotNull Date nextDate(int days)
+    public static Date nextDate(int days)
     {
         LocalDate nextDate = LocalDate.now().plusDays(days);
         return new Date(nextDate.getYear(), nextDate.getMonth().getValue(),
                 nextDate.getDayOfMonth());
     }
     //매개변수로 입력받은 Date를 매개변수로 입력한 날짜만큼 이전 날짜 생성
-    public static @NotNull Date previousDate(@NotNull Date date, int days)
+    public static Date previousDate(Date date, int days)
     {
         LocalDate previousDate = LocalDate.of(date.getYear(),
                 date.getMonth().getValue(), date.getDay()).minusDays(days);
@@ -83,7 +73,7 @@ public class Date implements Cloneable
                 previousDate.getDayOfMonth());
     }
     //매개변수로 입력받은 Date를 매개변수로 입력한 날짜만큼 이후 날짜 생성
-    public static @NotNull Date nextDate(@NotNull Date date, int days)
+    public static Date nextDate(Date date, int days)
     {
         LocalDate nextDate = LocalDate.of(date.getYear(),
                 date.getMonth().getValue(), date.getDay()).plusDays(days);
@@ -91,42 +81,42 @@ public class Date implements Cloneable
                 nextDate.getDayOfMonth());
     }
     //Date끼리 더큰지 비교
-    public boolean isGreaterThan(@NotNull Date other)
+    public boolean isGreaterThan(Date other)
     {
         boolean ret = false;
         if (this.year > other.year)
         {
             ret = true;
         }
-	    else if (this.year == other.year && this.month.compareTo(other.month) > 0)
+        else if (this.year == other.year && this.month.compareTo(other.month) > 0)
         {
             ret = true;
         }
-	    else if (this.year == other.year && this.month == other.month && this.day > other.day)
+        else if (this.year == other.year && this.month == other.month && this.day > other.day)
         {
             ret = true;
         }
         return ret;
     }
     //Date끼리 더작은지 비교
-    public boolean isLowerThan(@NotNull Date other)
+    public boolean isLowerThan(Date other)
     {
         boolean ret = false;
         if (this.year < other.year)
         {
             ret = true;
         }
-	    else if (this.year == other.year && this.month.compareTo(other.month) < 0)
+        else if (this.year == other.year && this.month.compareTo(other.month) < 0)
         {
             ret = true;
         }
-    	else if (this.year == other.year && this.month == other.month && this.day < other.day)
+        else if (this.year == other.year && this.month == other.month && this.day < other.day)
         {
             ret = true;
         }
         return ret;
     }
-    //Object클래스의 equal메소드 재정의
+    //Object클래스의 equals메소드 재정의
     @Override
     public boolean equals(Object obj)
     {
