@@ -104,19 +104,19 @@ public class Main
         {
             System.out.println(accountBook.getAt(indexes.get(i)));
         }
-        //17. "용돈"으로 찾은 것 중에서 금액(amount)을 수정한다.
-        System.out.println("17. 금액(amount) 수정 : ");
+        //17. 적요("월급")로 찾은 것 중에서 금액(amount)과 비고를 수정한다.
+        System.out.println("17. 금액(amount)과 비고(remarks) 수정 : ");
         //교통비 amount 수정 전에 뒤에 객체들 출력해서 balance 확인하기
-        System.out.println("17.1 금액(amount)을 수정하기 전에 이후 객체 전체 출력 : ");
+        System.out.println("17.1 금액(amount)과 비고(remarks) 수정하기 전에 이후 객체 전체 출력 : ");
         for(int i = indexes.get(0); i < accountBook.getLength(); i++)
         {
             System.out.println(accountBook.getAt(i));
         }
         index = accountBook.correct(indexes.get(0), 2400000,
-                accountBook.getAt(indexes.get(0)).getRemarks());
-        System.out.println("17.2 월급 금액(amount)을 수정 : ");
+                "퇴직금");
+        System.out.println("17.2 월급 금액(amount)과 비고(remarks) 수정 : ");
         System.out.println(accountBook.getAt(index));
-        System.out.println("17.3 월급 금액 수정 후에 뒤에 위치한 Account 객체들의 잔액 바뀌는지 확인 : ");
+        System.out.println("17.3 월급 금액과 비고 수정 후에 뒤에 위치한 Account 객체들의 잔액 바뀌는지 확인 : ");
         for(int i = indexes.get(0); i < accountBook.getLength(); i++)
         {
             System.out.println(accountBook.getAt(i));

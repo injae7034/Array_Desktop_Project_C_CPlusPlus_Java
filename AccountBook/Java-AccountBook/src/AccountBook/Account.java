@@ -84,4 +84,5 @@ public abstract class Account
     {
         this.balance = balance;
     }
+    public void setRemarks(String remarks){ this.remarks = remarks; }
 }

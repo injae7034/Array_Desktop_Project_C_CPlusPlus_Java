@@ -184,6 +184,8 @@ public class AccountBook
         account.setAmount(amount);
         //Account객체의 잔액(balance)을 변경해준다.
         account.setBalance(balance);
+        //Account객체의 비고(remarks)를 변경해준다.
+        account.setRemarks(remarks);
         //Account객체의 잔액이 수정되었기 때문에 수정된 Account객체
         //이후의 Account객체들의 잔액들도 모두 수정해줘야함.
         //수정된 Account객체 이후부터 가계부의 마지막 Account객체까지 반복한다.
