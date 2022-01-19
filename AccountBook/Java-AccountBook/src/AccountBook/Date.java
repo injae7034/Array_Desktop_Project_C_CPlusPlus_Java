@@ -11,15 +11,6 @@ public class Date implements Cloneable
     private Month month;
     private int day;
     private DayOfWeek dayOfWeek;
-    //디폴트생성자
-    public Date()
-    {
-        LocalDate localDate = LocalDate.now();
-        this.year = localDate.getYear();
-        this.month = localDate.getMonth();
-        this.day = localDate.getDayOfMonth();
-        this.dayOfWeek = localDate.getDayOfWeek();
-    }
     //매개변수를 가지는 생성자
     public Date(int year, int month, int day)
     {
