@@ -16,7 +16,7 @@ public abstract class Account
     //디폴트 생성자
     public Account()
     {
-        this.date = new Date();
+        this.date = Date.today();
         this.briefs = "";
         this.amount = 0;
         this.balance = 0;

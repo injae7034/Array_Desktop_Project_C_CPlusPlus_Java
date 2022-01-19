@@ -116,7 +116,7 @@ public class Date implements Cloneable
         }
         return ret;
     }
-    //Object클래스의 equal메소드 재정의
+    //Object클래스의 equals메소드 재정의
     @Override
     public boolean equals(Object obj)
     {
