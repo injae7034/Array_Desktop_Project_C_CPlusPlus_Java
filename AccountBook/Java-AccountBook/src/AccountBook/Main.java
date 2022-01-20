@@ -88,8 +88,7 @@ public class Main
         {
             System.out.println(accountBook.getAt(i));
         }
-        index = accountBook.correct(indexes.get(3), -65000,
-                accountBook.getAt(indexes.get(3)).getRemarks());
+        index = accountBook.correct(indexes.get(3), -65000);
         System.out.println("15.2 11/25 날짜로 찾은 것 중에 4번째의 교통비의 금액(amount)을 수정 : ");
         System.out.println(accountBook.getAt(index));
         System.out.println("15.3 금액 수정 후에 뒤에 위치한 Account 객체들의 잔액 바뀌는지 확인 : ");
@@ -112,8 +111,7 @@ public class Main
         {
             System.out.println(accountBook.getAt(i));
         }
-        index = accountBook.correct(indexes.get(0), 2400000,
-                "퇴직금");
+        index = accountBook.correct(indexes.get(0), 2400000, "퇴직금");
         System.out.println("17.2 월급 금액(amount)과 비고(remarks) 수정 : ");
         System.out.println(accountBook.getAt(index));
         System.out.println("17.3 월급 금액과 비고 수정 후에 뒤에 위치한 Account 객체들의 잔액 바뀌는지 확인 : ");
@@ -151,5 +149,7 @@ public class Main
         //22. 가계부 전체를 출력한다.
         System.out.println("22. 가계부 전체 출력하기 : ");
         accountBook.printAllAccounts();
+        //23. 비고만 수정하기
+        index = accountBook.correct(indexes.get(0), "퇴직금");
     }
 }

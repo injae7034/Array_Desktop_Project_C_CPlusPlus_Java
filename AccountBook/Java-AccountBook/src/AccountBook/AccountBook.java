@@ -173,6 +173,157 @@ public class AccountBook
         return indexes;
     }
 
+    /*
+    //correct(다형성을 적용하여 오버라이딩 메소드 만들지 않을 경우)
+    public int correct(int index, int amount, String remarks)
+    {
+        //매개변수로 입력 받은 위치의 Account객체를 구한다.
+        Account account = this.accounts.get(index);
+        int balance = 0;//잔액을 저장할 임시공간
+        //account가 수입(Income)이면
+        if(account instanceof Income)
+        {
+            //balance를 구한다.
+            balance = account.getBalance() + (amount - account.getAmount());
+        }
+        //account가 지출(Outgo)이면
+        else
+        {
+            //balance를 구한다.
+            balance = account.getBalance() + (account.getAmount() + amount);
+        }
+        //Account객체의 금액(amount)을 변경해준다.
+        account.setAmount(amount);
+        //Account객체의 잔액(balance)을 변경해준다.
+        account.setBalance(balance);
+        //Account객체의 비고(remarks)를 변경해준다.
+        account.setRemarks(remarks);
+        //Account객체의 잔액이 수정되었기 때문에 수정된 Account객체
+        //이후의 Account객체들의 잔액들도 모두 수정해줘야함.
+        //수정된 Account객체 이후부터 가계부의 마지막 Account객체까지 반복한다.
+        Account afterAccount = null;
+        for(int i = index + 1; i < this.length; i++)
+        {
+            //잔액을 수정한 Account객체를 구한다.
+            account = this.accounts.get(i - 1);
+            //잔액을 수정한 Account객체의 다음 Account객체를 구한다.
+            afterAccount = this.accounts.get(i);
+            //afterAccount가 수입(Income)이면
+            if(afterAccount instanceof Income)
+            {
+                //수정할 잔액을 구한다.
+                balance = account.getBalance() + afterAccount.getAmount();
+            }
+            //afterAccount가 지출(Outgo)이면
+            else
+            {
+                //수정할 잔액을 구한다.
+                balance = account.getBalance() - afterAccount.getAmount();
+            }
+            //잔액을 수정한 Account객체의 다음 Account객체의 잔액을 수정한다.
+            afterAccount.setBalance(balance);
+        }
+        return index;
+    }
+     */
+
+/*
+    //correct
+    public int correct(int index, int amount, String remarks)
+    {
+        //매개변수로 입력 받은 위치의 Account객체를 구한다.
+        Account account = this.accounts.get(index);
+        //변경할 금액을(amount) 바탕으로 변경될 잔액을 구한다.
+        int balance = account.calculateBalance(amount);
+        //Account객체의 금액(amount)을 변경해준다.
+        account.setAmount(amount);
+        //Account객체의 잔액(balance)을 변경해준다.
+        account.setBalance(balance);
+        //Account객체의 비고(remarks)를 변경해준다.
+        account.setRemarks(remarks);
+        //Account객체의 잔액이 수정되었기 때문에 수정된 Account객체
+        //이후의 Account객체들의 잔액들도 모두 수정해줘야함.
+        //수정된 Account객체 이후부터 가계부의 마지막 Account객체까지 반복한다.
+        for(int i = index + 1; i < this.length; i++)
+        {
+            //잔액을 수정한 Account객체의 다음 Account객체를 구한다.
+            account = this.accounts.get(i);
+            //수정할 잔액을 구한다.
+            balance = account.calculateBalance(this.accounts.get(i - 1));
+            //잔액을 수정한다.
+            account.setBalance(balance);
+        }
+        return index;
+    }
+ */
+/*
+    //correct(비고만 바꿨을 때 금액과 잔액을 바꾸지 않도록 방지)
+    public int correct(int index, int amount, String remarks)
+    {
+        //매개변수로 입력 받은 위치의 Account객체를 구한다.
+        Account account = this.accounts.get(index);
+        //매개변수로 입력 받은 remarks로 Account객체의 remarks를 변경해준다.
+        account.setRemarks(remarks);
+        //금액의 변경이 있으면
+        if(amount != account.getAmount())
+        {
+            //변경할 금액을(amount) 바탕으로 변경될 잔액을 구한다.
+            int balance = account.calculateBalance(amount);
+            //Account객체의 금액(amount)을 변경해준다.
+            account.setAmount(amount);
+            //Account객체의 잔액(balance)을 변경해준다.
+            account.setBalance(balance);
+
+            //Account객체의 잔액이 수정되었기 때문에 수정된 Account객체
+            //이후의 Account객체들의 잔액들도 모두 수정해줘야함.
+            //수정된 Account객체 이후부터 가계부의 마지막 Account객체까지 반복한다.
+            for(int i = index + 1; i < this.length; i++)
+            {
+                //잔액을 수정한 Account객체의 다음 Account객체를 구한다.
+                account = this.accounts.get(i);
+                //수정할 잔액을 구한다.
+                balance = account.calculateBalance(this.accounts.get(i - 1));
+                //잔액을 수정한다.
+                account.setBalance(balance);
+            }
+        }
+        return index;
+    }
+ */
+    //correct 메소드 오버로딩
+    public int correct(int index, int amount)
+    {
+        //매개변수로 입력 받은 위치의 Account객체를 구한다.
+        Account account = this.accounts.get(index);
+        //변경할 금액을(amount) 바탕으로 변경될 잔액을 구한다.
+        int balance = account.calculateBalance(amount);
+        //Account객체의 금액(amount)을 변경해준다.
+        account.setAmount(amount);
+        //Account객체의 잔액(balance)을 변경해준다.
+        account.setBalance(balance);
+
+        //Account객체의 잔액이 수정되었기 때문에 수정된 Account객체
+        //이후의 Account객체들의 잔액들도 모두 수정해줘야함.
+        //수정된 Account객체 이후부터 가계부의 마지막 Account객체까지 반복한다.
+        for(int i = index + 1; i < this.length; i++)
+        {
+            //잔액을 수정한 Account객체의 다음 Account객체를 구한다.
+            account = this.accounts.get(i);
+            //수정할 잔액을 구한다.
+            balance = account.calculateBalance(this.accounts.get(i - 1));
+            //잔액을 수정한다.
+            account.setBalance(balance);
+        }
+        return index;
+    }
+    public int correct(int index, String remarks)
+    {
+        //매개변수로 입력 받은 위치의 Account객체를 구한다.
+        Account account = this.accounts.get(index);
+        //매개변수로 입력 받은 remarks로 Account객체의 remarks를 변경해준다.
+        account.setRemarks(remarks);
+        return index;
+    }
     //correct
     public int correct(int index, int amount, String remarks)
     {
