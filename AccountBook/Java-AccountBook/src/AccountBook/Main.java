@@ -146,10 +146,18 @@ public class Main
         Map<String, Integer> totalOutcomes = accountBook.calculate(new Date("20211125"),
                 new Date(2021, 11, 30));
         System.out.println(totalOutcomes);
-        //22. 가계부 전체를 출력한다.
-        System.out.println("22. 가계부 전체 출력하기 : ");
-        accountBook.printAllAccounts();
-        //23. 비고만 수정하기
+        //22. 총수입을 구해서 출력한다.
+        System.out.println("22. 총수입 : " + totalOutcomes.get("totalIncome"));
+        //23. 총지출을 구해서 출력한다.
+        System.out.println("23. 총지출 : " + totalOutcomes.get("totalOutgo"));
+        //24. 총잔액을 구해서 출력한다.
+        System.out.println("24. 총잔액 : " + totalOutcomes.get("totalBalance"));
+        //25. 비고만 수정하기
         index = accountBook.correct(indexes.get(0), "퇴직금");
+        System.out.print("25. 비고만 수정하기 : ");
+        System.out.println(accountBook.getAt(index));
+        //26. 가계부 전체를 출력한다.
+        System.out.println("26. 가계부 전체 출력하기 : ");
+        accountBook.printAllAccounts();
     }
 }
