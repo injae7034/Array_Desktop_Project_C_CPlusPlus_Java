@@ -13,26 +13,26 @@ int main(int argc, char* argv[])
 	Long count;
 	Personal personal;
 
-	//¸ŞÀÎÅ×½ºÆ® ½Ã³ª¸®¿À
-	//1. capacity¿¡ 6À» ÀÔ·ÂÇÑ´Ù.
+	//ë©”ì¸í…ŒìŠ¤íŠ¸ ì‹œë‚˜ë¦¬ì˜¤
+	//1. capacityì— 6ì„ ì…ë ¥í•œë‹¤.
 	AddressBook_Create(&addressBook, 6);
-	//2. ºÒ·¯¿Â´Ù.
+	//2. ë¶ˆëŸ¬ì˜¨ë‹¤.
 	Load(&addressBook);
-	//3. È«±æµ¿, ¼­¿ï Áß±¸, 021766710, HongÀ» ±âÀçÇÑ´Ù.
-	index = Record(&addressBook, "È«±æµ¿", "¼­¿ï Áß±¸", "021766710", "Hong");
+	//3. í™ê¸¸ë™, ì„œìš¸ ì¤‘êµ¬, 021766710, Hongì„ ê¸°ì¬í•œë‹¤.
+	index = Record(&addressBook, "í™ê¸¸ë™", "ì„œìš¸ ì¤‘êµ¬", "021766710", "Hong");
 	personal = AddressBook_GetAt(&addressBook, index);
 	printf("%s %s %s %s\n", personal.name, personal.address, personal.telephoneNumber, personal.emailAddress);
-	//4. °í±æµ¿, ¼­¿ï ¼ºµ¿±¸, 029575976, Go¸¦ ±âÀçÇÑ´Ù.
-	index = Record(&addressBook, "°í±æµ¿", "¼­¿ï ¼ºµ¿±¸", "029575976", "Go");
+	//4. ê³ ê¸¸ë™, ì„œìš¸ ì„±ë™êµ¬, 029575976, Goë¥¼ ê¸°ì¬í•œë‹¤.
+	index = Record(&addressBook, "ê³ ê¸¸ë™", "ì„œìš¸ ì„±ë™êµ¬", "029575976", "Go");
 	personal = AddressBook_GetAt(&addressBook, index);
 	printf("%s %s %s %s\n", personal.name, personal.address, personal.telephoneNumber, personal.emailAddress);
-	//5. È«±æµ¿, ÀÎÃµ ¿¬¼ö±¸, 0313267926, Hong2¸¦ ±âÀçÇÑ´Ù.
-	index = Record(&addressBook, "È«±æµ¿", "ÀÎÃµ ¿¬¼ö±¸", "0313267926", "Hong2");
+	//5. í™ê¸¸ë™, ì¸ì²œ ì—°ìˆ˜êµ¬, 0313267926, Hong2ë¥¼ ê¸°ì¬í•œë‹¤.
+	index = Record(&addressBook, "í™ê¸¸ë™", "ì¸ì²œ ì—°ìˆ˜êµ¬", "0313267926", "Hong2");
 	personal = AddressBook_GetAt(&addressBook, index);
 	printf("%s %s %s %s\n", personal.name, personal.address, personal.telephoneNumber, personal.emailAddress);
 	printf("\n");
-	//6. È«±æµ¿À» Ã£´Â´Ù.
-	Find(&addressBook, "È«±æµ¿", &indexes, &count);
+	//6. í™ê¸¸ë™ì„ ì°¾ëŠ”ë‹¤.
+	Find(&addressBook, "í™ê¸¸ë™", &indexes, &count);
 	index = 0;
 	while (index < count)
 	{
@@ -45,28 +45,28 @@ int main(int argc, char* argv[])
 		free(indexes);
 	}
 	printf("\n");
-	//7. ¼¼ ¹øÂ° È«±æµ¿ÀÇ ÁÖ¼Ò¿Í ÀüÈ­¹øÈ£, ÀÌ¸ŞÀÏÁÖ¼Ò¸¦ °íÄ£´Ù.
-	index = Correct(&addressBook, 2, "¼­¿ï ±¤Áø±¸", "027971723", "Hong2");
+	//7. ì„¸ ë²ˆì§¸ í™ê¸¸ë™ì˜ ì£¼ì†Œì™€ ì „í™”ë²ˆí˜¸, ì´ë©”ì¼ì£¼ì†Œë¥¼ ê³ ì¹œë‹¤.
+	index = Correct(&addressBook, 2, "ì„œìš¸ ê´‘ì§„êµ¬", "027971723", "Hong2");
 	personal = AddressBook_GetAt(&addressBook, index);
 	printf("%s %s %s %s\n", personal.name, personal.address, personal.telephoneNumber, personal.emailAddress);
 	printf("\n");
-	//8. °í±æµ¿À» Áö¿î´Ù.
+	//8. ê³ ê¸¸ë™ì„ ì§€ìš´ë‹¤.
 	index = Erase(&addressBook, 1);
 	if (index == -1)
 	{
-		printf("Áö¿öÁ³½À´Ï´Ù\n");
+		printf("ì§€ì›Œì¡ŒìŠµë‹ˆë‹¤\n");
 	}
 	printf("\n");
-	//9. ÃÖ±æµ¿, ¼­¿ï ¼ºµ¿±¸, 023517134, Choi¸¦ ±âÀçÇÑ´Ù.
-	index = Record(&addressBook, "ÃÖ±æµ¿", "¼­¿ï ¼ºµ¿±¸", "023517134", "Choi");
+	//9. ìµœê¸¸ë™, ì„œìš¸ ì„±ë™êµ¬, 023517134, Choië¥¼ ê¸°ì¬í•œë‹¤.
+	index = Record(&addressBook, "ìµœê¸¸ë™", "ì„œìš¸ ì„±ë™êµ¬", "023517134", "Choi");
 	personal = AddressBook_GetAt(&addressBook, index);
 	printf("%s %s %s %s\n", personal.name, personal.address, personal.telephoneNumber, personal.emailAddress);
-	//10. Á¤±æµ¿, ¼­¿ï Á¾·Î±¸, 024366751, JungÀ» ±âÀçÇÑ´Ù.
-	index = Record(&addressBook, "Á¤±æµ¿", "¼­¿ï Á¾·Î±¸", "024366751", "Jung");
+	//10. ì •ê¸¸ë™, ì„œìš¸ ì¢…ë¡œêµ¬, 024366751, Jungì„ ê¸°ì¬í•œë‹¤.
+	index = Record(&addressBook, "ì •ê¸¸ë™", "ì„œìš¸ ì¢…ë¡œêµ¬", "024366751", "Jung");
 	personal = AddressBook_GetAt(&addressBook, index);
 	printf("%s %s %s %s\n", personal.name, personal.address, personal.telephoneNumber, personal.emailAddress);
 	printf("\n");
-	//11. Á¤¸®ÇÑ´Ù.
+	//11. ì •ë¦¬í•œë‹¤.
 	Arrange(&addressBook);
 	index = 0;
 	while (index < addressBook.length)
@@ -75,9 +75,9 @@ int main(int argc, char* argv[])
 		printf("%s %s %s %s\n", personal.name, personal.address, personal.telephoneNumber, personal.emailAddress);
 		index++;
 	}
-	//12. ÀúÀåÇÑ´Ù.
+	//12. ì €ì¥í•œë‹¤.
 	Save(&addressBook);
-	//13. ÇÒ´çÇØÁ¦ÇÑ´Ù.
+	//13. í• ë‹¹í•´ì œí•œë‹¤.
 	AddressBook_Destroy(&addressBook);
 
 	return 0;
@@ -87,14 +87,14 @@ int main(int argc, char* argv[])
 //Create
 void AddressBook_Create(AddressBook* addressBook, Long capacity)
 {
-	//1. capacity¸¦ ÀÔ·Â¹Ş´Â´Ù.
-	//2. ¹è¿­À» ÇÒ´çÇÑ´Ù.
+	//1. capacityë¥¼ ì…ë ¥ë°›ëŠ”ë‹¤.
+	//2. ë°°ì—´ì„ í• ë‹¹í•œë‹¤.
 	Create(&addressBook->personals, capacity, sizeof(Personal));
-	//3. ÇÒ´ç·®À» Á¤ÇÑ´Ù.
+	//3. í• ë‹¹ëŸ‰ì„ ì •í•œë‹¤.
 	addressBook->capacity = capacity;
-	//4. »ç¿ë·®À» Á¤ÇÑ´Ù.
+	//4. ì‚¬ìš©ëŸ‰ì„ ì •í•œë‹¤.
 	addressBook->length = 0;
-	//5. ³¡³»´Ù.
+	//5. ëë‚´ë‹¤.
 }
 
 //Load
@@ -108,35 +108,35 @@ Long Load(AddressBook* addressBook)
 	file = fopen("AddressBook.dat", "rb");
 	if (file != NULL)
 	{
-		//1.1 ¼º¸í, ÁÖ¼Ò, ÀüÈ­¹øÈ£, ÀÌ¸ŞÀÏÁÖ¼Ò¸¦ ÀÔ·Â¹Ş´Â´Ù.
+		//1.1 ì„±ëª…, ì£¼ì†Œ, ì „í™”ë²ˆí˜¸, ì´ë©”ì¼ì£¼ì†Œë¥¼ ì…ë ¥ë°›ëŠ”ë‹¤.
 		flag = fread(&personal, sizeof(Personal), 1, file);
-		//1. ÆÄÀÏÀÇ ³¡ÀÌ ¾Æ´Ñµ¿¾È ¹İº¹ÇÑ´Ù.
+		//1. íŒŒì¼ì˜ ëì´ ì•„ë‹Œë™ì•ˆ ë°˜ë³µí•œë‹¤.
 		while (!feof(file) && flag != 0)
 		{
-			//1.2 »ç¿ë·®ÀÌ ÇÒ´ç·®º¸´Ù ÀÛÀ¸¸é
+			//1.2 ì‚¬ìš©ëŸ‰ì´ í• ë‹¹ëŸ‰ë³´ë‹¤ ì‘ìœ¼ë©´
 			if (addressBook->length < addressBook->capacity)
 			{
-				//1.2.1 ºó ÁÙ¿¡ Àû´Â´Ù.
+				//1.2.1 ë¹ˆ ì¤„ì— ì ëŠ”ë‹¤.
 				index = Store(&addressBook->personals, addressBook->length, &personal, sizeof(Personal));
 			}
-			//1.3. ±×·¸Áö ¾ÊÀ¸¸é
+			//1.3. ê·¸ë ‡ì§€ ì•Šìœ¼ë©´
 			else
 			{
-				//1.3.1 »õ ÁÖ¼Ò·ÏÀ» ¸¸µç´Ù.
+				//1.3.1 ìƒˆ ì£¼ì†Œë¡ì„ ë§Œë“ ë‹¤.
 				index = AppendFromRear(&addressBook->personals, &personal, sizeof(Personal));
-				//1.3.2 ÇÒ´ç·®À» Áõ°¡½ÃÅ²´Ù.
+				//1.3.2 í• ë‹¹ëŸ‰ì„ ì¦ê°€ì‹œí‚¨ë‹¤.
 				addressBook->capacity++;
 			}
-			//1.4. »ç¿ë·®À» Áõ°¡½ÃÅ²´Ù.
+			//1.4. ì‚¬ìš©ëŸ‰ì„ ì¦ê°€ì‹œí‚¨ë‹¤.
 			addressBook->length++;
-			//1.1 ¼º¸í, ÁÖ¼Ò, ÀüÈ­¹øÈ£, ÀÌ¸ŞÀÏÁÖ¼Ò¸¦ ÀÔ·Â¹Ş´Â´Ù.
+			//1.1 ì„±ëª…, ì£¼ì†Œ, ì „í™”ë²ˆí˜¸, ì´ë©”ì¼ì£¼ì†Œë¥¼ ì…ë ¥ë°›ëŠ”ë‹¤.
 			flag = fread(&personal, sizeof(Personal), 1, file);
 		}
 		fclose(file);
 	}
-	//2. »ç¿ë·®À» Ãâ·ÂÇÑ´Ù.
+	//2. ì‚¬ìš©ëŸ‰ì„ ì¶œë ¥í•œë‹¤.
 	return addressBook->length;
-	//3. ³¡³»´Ù.
+	//3. ëë‚´ë‹¤.
 }
 
 //GetAt
@@ -144,12 +144,12 @@ Personal AddressBook_GetAt(AddressBook* addressBook, Long index)
 {
 	Personal personal;
 	
-	//1. À§Ä¡¸¦ ÀÔ·Â¹Ş´Â´Ù.
-	//2. ÇØ´ç À§Ä¡ÀÇ personalÀ» ±¸ÇÑ´Ù.
+	//1. ìœ„ì¹˜ë¥¼ ì…ë ¥ë°›ëŠ”ë‹¤.
+	//2. í•´ë‹¹ ìœ„ì¹˜ì˜ personalì„ êµ¬í•œë‹¤.
 	GetAt(&addressBook->personals, index, &personal, sizeof(Personal));
-	//3. personalÀ» Ãâ·ÂÇÑ´Ù.
+	//3. personalì„ ì¶œë ¥í•œë‹¤.
 	return personal;
-	//4. ³¡³»´Ù.
+	//4. ëë‚´ë‹¤.
 }
 
 //Record
@@ -158,40 +158,40 @@ Long Record(AddressBook* addressBook, char(*name), char(*address), char(*telepho
 	Long index;
 	Personal personal;
 
-	//1. ¼º¸í, ÁÖ¼Ò, ÀüÈ­¹øÈ£, ÀÌ¸ŞÀÏÁÖ¼Ò¸¦ ÀÔ·Â¹Ş´Â´Ù.
+	//1. ì„±ëª…, ì£¼ì†Œ, ì „í™”ë²ˆí˜¸, ì´ë©”ì¼ì£¼ì†Œë¥¼ ì…ë ¥ë°›ëŠ”ë‹¤.
 	strcpy(personal.name, name);
 	strcpy(personal.address, address);
 	strcpy(personal.telephoneNumber, telephoneNumber);
 	strcpy(personal.emailAddress, emailAddress);
-	//2. »ç¿ë·®ÀÌ ÇÒ´ç·®º¸´Ù ÀÛÀ¸¸é
+	//2. ì‚¬ìš©ëŸ‰ì´ í• ë‹¹ëŸ‰ë³´ë‹¤ ì‘ìœ¼ë©´
 	if (addressBook->length < addressBook->capacity)
 	{
-		//2.1 ºó ÁÙ¿¡ Àû´Â´Ù.
+		//2.1 ë¹ˆ ì¤„ì— ì ëŠ”ë‹¤.
 		index = Store(&addressBook->personals, addressBook->length, &personal, sizeof(Personal));
 	}
-	//3. ±×·¸Áö ¾ÊÀ¸¸é
+	//3. ê·¸ë ‡ì§€ ì•Šìœ¼ë©´
 	else
 	{
-		//3.1 »õ ÁÖ¼Ò·ÏÀ» ¸¸µç´Ù.
+		//3.1 ìƒˆ ì£¼ì†Œë¡ì„ ë§Œë“ ë‹¤.
 		index = AppendFromRear(&addressBook->personals, &personal, sizeof(Personal));
-		//3.2 ÇÒ´ç·®À» Áõ°¡½ÃÅ²´Ù.
+		//3.2 í• ë‹¹ëŸ‰ì„ ì¦ê°€ì‹œí‚¨ë‹¤.
 		addressBook->capacity++;
 	}
-	//4. »ç¿ë·®À» Áõ°¡½ÃÅ²´Ù.
+	//4. ì‚¬ìš©ëŸ‰ì„ ì¦ê°€ì‹œí‚¨ë‹¤.
 	addressBook->length++;
-	//5. À§Ä¡¸¦ Ãâ·ÂÇÑ´Ù.
+	//5. ìœ„ì¹˜ë¥¼ ì¶œë ¥í•œë‹¤.
 	return index;
-	//6. ³¡³»´Ù.
+	//6. ëë‚´ë‹¤.
 }
 
 //Find
 void Find(AddressBook* addressBook, char(*name), Long* (*indexes), Long* count)
 {
-	//1. ¼º¸íÀ» ÀÔ·Â¹Ş´Â´Ù.
-	//2. ¼º¸íÀ» Ã£´Â´Ù.
+	//1. ì„±ëª…ì„ ì…ë ¥ë°›ëŠ”ë‹¤.
+	//2. ì„±ëª…ì„ ì°¾ëŠ”ë‹¤.
 	LinearSearchDuplicate(&addressBook->personals, name, indexes, count, sizeof(Personal), CompareNames);
-	//3. À§Ä¡µé°ú °³¼ö¸¦ Ãâ·ÂÇÑ´Ù.
-	//4. ³¡³»´Ù.
+	//3. ìœ„ì¹˜ë“¤ê³¼ ê°œìˆ˜ë¥¼ ì¶œë ¥í•œë‹¤.
+	//4. ëë‚´ë‹¤.
 }
 
 //Correct
@@ -199,39 +199,39 @@ Long Correct(AddressBook* addressBook, Long index, char(*address), char(*telepho
 {
 	Personal personal;
 
-	//1. ÁÖ¼Ò, ÀüÈ­¹øÈ£, ÀÌ¸ŞÀÏÁÖ¼Ò¸¦ ÀÔ·Â¹Ş´Â´Ù.
+	//1. ì£¼ì†Œ, ì „í™”ë²ˆí˜¸, ì´ë©”ì¼ì£¼ì†Œë¥¼ ì…ë ¥ë°›ëŠ”ë‹¤.
 	GetAt(&addressBook->personals, index, &personal, sizeof(Personal));
 	strcpy(personal.address, address);
 	strcpy(personal.telephoneNumber, telephoneNumber);
 	strcpy(personal.emailAddress, emailAddress);
-	//2. À§Ä¡¿¡ Àû´Â´Ù.
+	//2. ìœ„ì¹˜ì— ì ëŠ”ë‹¤.
 	index = Modify(&addressBook->personals, index, &personal, sizeof(Personal));
-	//3. À§Ä¡¸¦ Ãâ·ÂÇÑ´Ù.
+	//3. ìœ„ì¹˜ë¥¼ ì¶œë ¥í•œë‹¤.
 	return index;
-	//4. ³¡³»´Ù.
+	//4. ëë‚´ë‹¤.
 }
 
 //Erase
 Long Erase(AddressBook* addressBook, Long index)
 {
-	//1. À§Ä¡¸¦ ÀÔ·Â¹Ş´Â´Ù.
-	//2. ÇØ´ç À§Ä¡¸¦ Áö¿î´Ù.
+	//1. ìœ„ì¹˜ë¥¼ ì…ë ¥ë°›ëŠ”ë‹¤.
+	//2. í•´ë‹¹ ìœ„ì¹˜ë¥¼ ì§€ìš´ë‹¤.
 	index = Delete(&addressBook->personals, index, sizeof(Personal));
-	//3. ÇÒ´ç·®À» °¨¼Ò½ÃÅ²´Ù.
+	//3. í• ë‹¹ëŸ‰ì„ ê°ì†Œì‹œí‚¨ë‹¤.
 	addressBook->capacity--;
-	//4. »ç¿ë·®À» °¨¼Ò½ÃÅ²´Ù.
+	//4. ì‚¬ìš©ëŸ‰ì„ ê°ì†Œì‹œí‚¨ë‹¤.
 	addressBook->length--;
-	//5. À§Ä¡¸¦ Ãâ·ÂÇÑ´Ù.
+	//5. ìœ„ì¹˜ë¥¼ ì¶œë ¥í•œë‹¤.
 	return index;
-	//6. ³¡³»´Ù.
+	//6. ëë‚´ë‹¤.
 }
 
 //Arrange
 void Arrange(AddressBook* addressBook)
 {
-	//1. ¿À¸§Â÷¼øÀ¸·Î Á¤·ÄÇÑ´Ù.
+	//1. ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ì •ë ¬í•œë‹¤.
 	InsertionSort(&addressBook->personals, sizeof(Personal), ComparePersonals);
-	//2. ³¡³»´Ù.
+	//2. ëë‚´ë‹¤.
 }
 
 //Save
@@ -244,27 +244,27 @@ Long Save(AddressBook* addressBook)
 	file = fopen("AddressBook.dat", "wb");
 	if (file != NULL)
 	{
-		//1. »ç¿ë·®¸¸Å­ ¹İº¹ÇÑ´Ù.
+		//1. ì‚¬ìš©ëŸ‰ë§Œí¼ ë°˜ë³µí•œë‹¤.
 		while (index < addressBook->length)
 		{
-			//1.1 ¼º¸í, ÁÖ¼Ò, ÀüÈ­¹øÈ£, ÀÌ¸ŞÀÏÁÖ¼Ò¸¦ Ãâ·ÂÇÑ´Ù.
+			//1.1 ì„±ëª…, ì£¼ì†Œ, ì „í™”ë²ˆí˜¸, ì´ë©”ì¼ì£¼ì†Œë¥¼ ì¶œë ¥í•œë‹¤.
 			GetAt(&addressBook->personals, index, &personal, sizeof(Personal));
 			fwrite(&personal, sizeof(Personal), 1, file);
 			index++;
 		}
 		fclose(file);
 	}
-	//2. »ç¿ë·®À» Ãâ·ÂÇÑ´Ù.
+	//2. ì‚¬ìš©ëŸ‰ì„ ì¶œë ¥í•œë‹¤.
 	return addressBook->length;
-	//3. ³¡³»´Ù.
+	//3. ëë‚´ë‹¤.
 }
 
 //Destroy
 void AddressBook_Destroy(AddressBook* addressBook)
 {
-	//1. ¹è¿­À» ÇÒ´çÇØÁ¦ÇÑ´Ù.
+	//1. ë°°ì—´ì„ í• ë‹¹í•´ì œí•œë‹¤.
 	Destroy(&addressBook->personals);
-	//2. ³¡³»´Ù.
+	//2. ëë‚´ë‹¤.
 }
 
 
