@@ -22,25 +22,25 @@ BOOL CALLBACK FindingFormProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPa
 //OnInitDialog
 BOOL FindingForm_OnInitDialog(HWND hWnd, WPARAM wParam, LPARAM lParam)
 {
-	//1. Ã£±â ÇÁ·¹ÀÓ À©µµ¿ì°¡ »ı¼ºµÉ ¶§
+	//1. ì°¾ê¸° í”„ë ˆì„ ìœˆë„ìš°ê°€ ìƒì„±ë  ë•Œ
 	LVCOLUMN column = { 0, };
 
-	//1.1 ¸®½ºÆ®ºä ÄÁÆ®·ÑÀÇ Çì´õ¸¦ ¸¸µç´Ù.
+	//1.1 ë¦¬ìŠ¤íŠ¸ë·° ì»¨íŠ¸ë¡¤ì˜ í—¤ë”ë¥¼ ë§Œë“ ë‹¤.
 	column.mask = LVCF_WIDTH | LVCF_TEXT;
 	column.cx = 50;
-	column.pszText = "¹øÈ£";
+	column.pszText = "ë²ˆí˜¸";
 	SendMessage(GetDlgItem(hWnd, IDC_LIST_PERSONALS), LVM_INSERTCOLUMN, (WPARAM)0, (LPARAM)&column);
 	column.cx = 100;
-	column.pszText = "¼º¸í";
+	column.pszText = "ì„±ëª…";
 	SendMessage(GetDlgItem(hWnd, IDC_LIST_PERSONALS), LVM_INSERTCOLUMN, (WPARAM)1, (LPARAM)&column);
 	column.cx = 300;
-	column.pszText = "ÁÖ¼Ò";
+	column.pszText = "ì£¼ì†Œ";
 	SendMessage(GetDlgItem(hWnd, IDC_LIST_PERSONALS), LVM_INSERTCOLUMN, (WPARAM)2, (LPARAM)&column);
 	column.cx = 200;
-	column.pszText = "ÀüÈ­¹øÈ£";
+	column.pszText = "ì „í™”ë²ˆí˜¸";
 	SendMessage(GetDlgItem(hWnd, IDC_LIST_PERSONALS), LVM_INSERTCOLUMN, (WPARAM)3, (LPARAM)&column);
 	column.cx = 300;
-	column.pszText = "ÀÌ¸ŞÀÏÁÖ¼Ò";
+	column.pszText = "ì´ë©”ì¼ì£¼ì†Œ";
 	SendMessage(GetDlgItem(hWnd, IDC_LIST_PERSONALS), LVM_INSERTCOLUMN, (WPARAM)4, (LPARAM)&column);
 
 	SendMessage(GetDlgItem(hWnd, IDC_LIST_PERSONALS), LVM_SETEXTENDEDLISTVIEWSTYLE, 0,
@@ -86,15 +86,15 @@ BOOL FindingForm_OnFindButtonClicked(HWND hWnd, WPARAM wParam, LPARAM lParam)
 	HWND addressBookForm;
 	Personal personal;
 
-	//2. Ã£±â ¹öÆ°À» Å¬¸¯ÇßÀ» ¶§
+	//2. ì°¾ê¸° ë²„íŠ¼ì„ í´ë¦­í–ˆì„ ë•Œ
 	if (HIWORD(wParam) == BN_CLICKED)
 	{
-		//2.1 ¼º¸íÀ» ÀÔ·Â¹Ş´Â´Ù.
+		//2.1 ì„±ëª…ì„ ì…ë ¥ë°›ëŠ”ë‹¤.
 		SendMessage(GetDlgItem(hWnd, IDC_EDIT_NAME), WM_GETTEXT, (WPARAM)11, (LPARAM)name);
-		//2.2 ÁÖ¼Ò·Ï ÇÁ·¹ÀÓ À©µµ¿ì¸¦ Ã£´Â´Ù.
-		addressBookForm = FindWindow("#32770", "ÁÖ¼Ò·Ï");
-		//2.3 ÁÖ¼Ò·Ï ÇÁ·¹ÀÓ À©µµ¿ìÀÇ ÁÖ¼Ò·Ï¿¡¼­ Ã£´Â´Ù.(Find)
-		//Ã£±â À©µµ¿ì¸¦ Á¾·áÇÏÁö ¾Ê°í Ã£±â ¹öÆ°À» ¿¬¼ÓÇØ¼­ ´©¸¦ ¶§ ¹ß»ıÇÏ´Â ¸Ş¸ğ¸® ´©¼ö¸¦ ¸·±â À§ÇÑ ÇÒ´çÇØÁ¦
+		//2.2 ì£¼ì†Œë¡ í”„ë ˆì„ ìœˆë„ìš°ë¥¼ ì°¾ëŠ”ë‹¤.
+		addressBookForm = FindWindow("#32770", "ì£¼ì†Œë¡");
+		//2.3 ì£¼ì†Œë¡ í”„ë ˆì„ ìœˆë„ìš°ì˜ ì£¼ì†Œë¡ì—ì„œ ì°¾ëŠ”ë‹¤.(Find)
+		//ì°¾ê¸° ìœˆë„ìš°ë¥¼ ì¢…ë£Œí•˜ì§€ ì•Šê³  ì°¾ê¸° ë²„íŠ¼ì„ ì—°ì†í•´ì„œ ëˆ„ë¥¼ ë•Œ ë°œìƒí•˜ëŠ” ë©”ëª¨ë¦¬ ëˆ„ìˆ˜ë¥¼ ë§‰ê¸° ìœ„í•œ í• ë‹¹í•´ì œ
 		indexes = (Long(*))GetWindowLong(hWnd, GWL_USERDATA);
 		if (indexes != NULL)
 		{
@@ -103,9 +103,9 @@ BOOL FindingForm_OnFindButtonClicked(HWND hWnd, WPARAM wParam, LPARAM lParam)
 		addressBook = (AddressBook*)GetWindowLong(addressBookForm, GWL_USERDATA);
 		Find(addressBook, name, &indexes, &count);
 		SetWindowLong(hWnd, GWL_USERDATA, (LONG)indexes);
-		//2.4 ¸®½ºÆ®ºä ÄÁÆ®·Ñ¿¡ ÀÖ´Â ¸ğµç Ç×¸ñµéÀ» Áö¿î´Ù.
+		//2.4 ë¦¬ìŠ¤íŠ¸ë·° ì»¨íŠ¸ë¡¤ì— ìˆëŠ” ëª¨ë“  í•­ëª©ë“¤ì„ ì§€ìš´ë‹¤.
 		SendMessage(GetDlgItem(hWnd, IDC_LIST_PERSONALS), LVM_DELETEALLITEMS, 0, 0);
-		//2.5 ¸®½ºÆ®ºä ÄÁÆ®·Ñ¿¡ Ã£Àº °³¼ö¸¸Å­ Ç×¸ñµéÀ» Ãß°¡ÇÑ´Ù.
+		//2.5 ë¦¬ìŠ¤íŠ¸ë·° ì»¨íŠ¸ë¡¤ì— ì°¾ì€ ê°œìˆ˜ë§Œí¼ í•­ëª©ë“¤ì„ ì¶”ê°€í•œë‹¤.
 		item.mask = LVIF_TEXT;
 		index = 0;
 		while (index < count)
@@ -147,12 +147,12 @@ BOOL FindingForm_OnListViewItemDoubleClicked(HWND hWnd, WPARAM wParam, LPARAM lP
 	HWND addressBookForm;
 	Long(*indexes);
 
-	//3. ¸®½ºÆ®ºä ÄÁÆ®·Ñ¿¡ ÀÖ´Â Ç×¸ñÀ» ´õºí Å¬¸¯ÇßÀ» ¶§
+	//3. ë¦¬ìŠ¤íŠ¸ë·° ì»¨íŠ¸ë¡¤ì— ìˆëŠ” í•­ëª©ì„ ë”ë¸” í´ë¦­í–ˆì„ ë•Œ
 	if (((LPNMHDR)lParam)->code == NM_DBLCLK)
 	{
-		//3.1 ¸®½ºÆ®ºä ÄÁÆ®·Ñ¿¡¼­ ¼±ÅÃÇÑ À§Ä¡¸¦ ÀĞ´Â´Ù.
+		//3.1 ë¦¬ìŠ¤íŠ¸ë·° ì»¨íŠ¸ë¡¤ì—ì„œ ì„ íƒí•œ ìœ„ì¹˜ë¥¼ ì½ëŠ”ë‹¤.
 		index = (Long)SendMessage(GetDlgItem(hWnd, IDC_LIST_PERSONALS), LVM_GETSELECTIONMARK, 0, 0);
-		//3.2 ¼±ÅÃÇÑ Ç×¸ñÀÇ ¼º¸í, ÁÖ¼Ò, ÀüÈ­¹øÈ£, ÀÌ¸ŞÀÏÁÖ¼Ò¸¦ ÀĞ´Â´Ù.
+		//3.2 ì„ íƒí•œ í•­ëª©ì˜ ì„±ëª…, ì£¼ì†Œ, ì „í™”ë²ˆí˜¸, ì´ë©”ì¼ì£¼ì†Œë¥¼ ì½ëŠ”ë‹¤.
 		item.iItem = index;
 		item.iSubItem = 1;
 		item.pszText = name;
@@ -170,17 +170,17 @@ BOOL FindingForm_OnListViewItemDoubleClicked(HWND hWnd, WPARAM wParam, LPARAM lP
 		item.pszText = emailAddress;
 		item.cchTextMax = 32;
 		SendMessage(GetDlgItem(hWnd, IDC_LIST_PERSONALS), LVM_GETITEMTEXT, (WPARAM)index, (LPARAM)&item);
-		//3.3 ÁÖ¼Ò·Ï ÇÁ·¹ÀÓ À©µµ¿ì¸¦ Ã£´Â´Ù.
-		addressBookForm = FindWindow("#32770", "ÁÖ¼Ò·Ï");
-		//3.4 ÁÖ¼Ò·Ï ÇÁ·¹ÀÓ À©µµ¿ìÀÇ °³ÀÎ¿¡ ¼±ÅÃÇÑ ¼º¸í, ÁÖ¼Ò, ÀüÈ­¹øÈ£, ÀÌ¸ŞÀÏÁÖ¼Ò¸¦ Ãâ·ÂÇÑ´Ù.
+		//3.3 ì£¼ì†Œë¡ í”„ë ˆì„ ìœˆë„ìš°ë¥¼ ì°¾ëŠ”ë‹¤.
+		addressBookForm = FindWindow("#32770", "ì£¼ì†Œë¡");
+		//3.4 ì£¼ì†Œë¡ í”„ë ˆì„ ìœˆë„ìš°ì˜ ê°œì¸ì— ì„ íƒí•œ ì„±ëª…, ì£¼ì†Œ, ì „í™”ë²ˆí˜¸, ì´ë©”ì¼ì£¼ì†Œë¥¼ ì¶œë ¥í•œë‹¤.
 		SendMessage(GetDlgItem(addressBookForm, IDC_EDIT_NAME), WM_SETTEXT, 0, (LPARAM)name);
 		SendMessage(GetDlgItem(addressBookForm, IDC_EDIT_ADDRESS), WM_SETTEXT, 0, (LPARAM)address);
 		SendMessage(GetDlgItem(addressBookForm, IDC_EDIT_TELEPHONENUMBER), WM_SETTEXT, 0, (LPARAM)telephoneNumber);
 		SendMessage(GetDlgItem(addressBookForm, IDC_EDIT_EMAILADDRESS), WM_SETTEXT, 0, (LPARAM)emailAddress);
-		//3.5 ÁÖ¼Ò·Ï ÇÁ·¹ÀÓ À©µµ¿ìÀÇ ¸®½ºÆ®ºä ÄÁÆ®·Ñ¿¡¼­ Ç×¸ñÀ» ¼±ÅÃÇÑ´Ù.
+		//3.5 ì£¼ì†Œë¡ í”„ë ˆì„ ìœˆë„ìš°ì˜ ë¦¬ìŠ¤íŠ¸ë·° ì»¨íŠ¸ë¡¤ì—ì„œ í•­ëª©ì„ ì„ íƒí•œë‹¤.
 		indexes = (Long(*))GetWindowLong(hWnd, GWL_USERDATA);
 		SendMessage(GetDlgItem(addressBookForm, IDC_LIST_PERSONALS), LVM_SETSELECTIONMARK, 0, (LPARAM)indexes[index]);
-		//3.6 À©µµ¿ì¸¦ ´İ´Â´Ù.
+		//3.6 ìœˆë„ìš°ë¥¼ ë‹«ëŠ”ë‹¤.
 		if (indexes != NULL)
 		{
 			free(indexes);
@@ -193,7 +193,7 @@ BOOL FindingForm_OnListViewItemDoubleClicked(HWND hWnd, WPARAM wParam, LPARAM lP
 //OnClose
 BOOL FindingForm_OnClose(HWND hWnd, WPARAM wParam, LPARAM lParam)
 {
-	//4. ´İ±â ¹öÆ°À» Å¬¸¯ÇßÀ» ¶§
+	//4. ë‹«ê¸° ë²„íŠ¼ì„ í´ë¦­í–ˆì„ ë•Œ
 	Long(*indexes);
 
 	indexes = (Long(*))GetWindowLong(hWnd, GWL_USERDATA);
@@ -201,7 +201,7 @@ BOOL FindingForm_OnClose(HWND hWnd, WPARAM wParam, LPARAM lParam)
 	{
 		free(indexes);
 	}
-	//4.1 À©µµ¿ì¸¦ ´İ´Ù.
+	//4.1 ìœˆë„ìš°ë¥¼ ë‹«ë‹¤.
 	EndDialog(hWnd, 0);
 	
 	return TRUE;
