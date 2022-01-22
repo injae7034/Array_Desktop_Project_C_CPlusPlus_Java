@@ -6,37 +6,37 @@
 //Create
 void Create(Array* array, Long capacity, size_t size)
 {
-	//1. capacity¸¦ ÀÔ·Â¹Ş´Â´Ù.
-	//2. ¹è¿­À» ¸¸µç´Ù.
+	//1. capacityë¥¼ ì…ë ¥ë°›ëŠ”ë‹¤.
+	//2. ë°°ì—´ì„ ë§Œë“ ë‹¤.
 	array->front = calloc(capacity, size);
-	//3. ÇÒ´ç·®À» Á¤ÇÑ´Ù.
+	//3. í• ë‹¹ëŸ‰ì„ ì •í•œë‹¤.
 	array->capacity = capacity;
-	//4. »ç¿ë·®À» Á¤ÇÑ´Ù.
+	//4. ì‚¬ìš©ëŸ‰ì„ ì •í•œë‹¤.
 	array->length = 0;
-	//5. ³¡³»´Ù.
+	//5. ëë‚´ë‹¤.
 }
 
 //Store
 Long Store(Array* array, Long index, void* object, size_t size)
 {
-	//1. À§Ä¡¿Í ´ë»óÀ» ÀÔ·Â¹Ş´Â´Ù.
-	//2. object¸¦ À§Ä¡¿¡ ÀúÀåÇÑ´Ù.
+	//1. ìœ„ì¹˜ì™€ ëŒ€ìƒì„ ì…ë ¥ë°›ëŠ”ë‹¤.
+	//2. objectë¥¼ ìœ„ì¹˜ì— ì €ì¥í•œë‹¤.
 	memcpy(((char*)array->front) + (index * size), object, size);
-	//3. »ç¿ë·®À» Áõ°¡½ÃÅ²´Ù.
+	//3. ì‚¬ìš©ëŸ‰ì„ ì¦ê°€ì‹œí‚¨ë‹¤.
 	array->length++;
-	//4. À§Ä¡¸¦ Ãâ·ÂÇÑ´Ù.
+	//4. ìœ„ì¹˜ë¥¼ ì¶œë ¥í•œë‹¤.
 	return index;
-	//5. ³¡³»´Ù.
+	//5. ëë‚´ë‹¤.
 }
 
 //GetAt
 void GetAt(Array* array, Long index, void* object, size_t size)
 {
-	//1. À§Ä¡¸¦ ÀÔ·Â¹Ş´Â´Ù.
-	//2. object¿¡ ¹è¿­¿ä¼Ò¸¦ ÀúÀåÇÑ´Ù.
+	//1. ìœ„ì¹˜ë¥¼ ì…ë ¥ë°›ëŠ”ë‹¤.
+	//2. objectì— ë°°ì—´ìš”ì†Œë¥¼ ì €ì¥í•œë‹¤.
 	memcpy(object, ((char*)array->front) + (index * size), size);
-	//3. object¸¦ Ãâ·ÂÇÑ´Ù.
-	//4. ³¡³»´Ù.
+	//3. objectë¥¼ ì¶œë ¥í•œë‹¤.
+	//4. ëë‚´ë‹¤.
 }
 
 //Insert
@@ -46,10 +46,10 @@ Long Insert(Array* array, Long index, void* object, size_t size)
 	Long i = 0;
 	Long j = 0;
 
-	//1. À§Ä¡¿Í ´ë»óÀ» ÀÔ·Â¹Ş´Â´Ù.
-	//2.  »õ ¹è¿­À» ¸¸µç´Ù.
+	//1. ìœ„ì¹˜ì™€ ëŒ€ìƒì„ ì…ë ¥ë°›ëŠ”ë‹¤.
+	//2.  ìƒˆ ë°°ì—´ì„ ë§Œë“ ë‹¤.
 	front = calloc(array->capacity + 1, size);
-	//3. ¹Ğ¾î³½´Ù.
+	//3. ë°€ì–´ë‚¸ë‹¤.
 	while (i < index)
 	{
 		memcpy(((char*)front) + (i * size), ((char*)array->front) + (j * size), size);
@@ -62,19 +62,19 @@ Long Insert(Array* array, Long index, void* object, size_t size)
 		j++;
 		i++;
 	}
-	//4. ±âÁ¸¹è¿­À» Áö¿î´Ù.
+	//4. ê¸°ì¡´ë°°ì—´ì„ ì§€ìš´ë‹¤.
 	if (array->front != NULL)
 	{
 		free(array->front);
 	}
-	//5. »ğÀÔÇÑ´Ù.
+	//5. ì‚½ì…í•œë‹¤.
 	array->front = front;
 	array->capacity++;
 	memcpy(((char*)array->front) + (index * size), object, size);
 	array->length++;
-	//6. À§Ä¡¸¦ Ãâ·ÂÇÑ´Ù.
+	//6. ìœ„ì¹˜ë¥¼ ì¶œë ¥í•œë‹¤.
 	return index;
-	//7. ³¡³»´Ù.
+	//7. ëë‚´ë‹¤.
 }
 
 //AppendFromFront
@@ -84,29 +84,29 @@ Long AppendFromFront(Array* array, void* object, size_t size)
 	void(*front);
 	Long i = 1;
 	Long j = 0;
-	//1. object¸¦ ÀÔ·Â¹Ş´Â´Ù.
-	//2. »õ ¹è¿­À» ¸¸µç´Ù.
+	//1. objectë¥¼ ì…ë ¥ë°›ëŠ”ë‹¤.
+	//2. ìƒˆ ë°°ì—´ì„ ë§Œë“ ë‹¤.
 	front = calloc(array->capacity + 1, size);
-	//3. ¹Ğ¾î³½´Ù.
+	//3. ë°€ì–´ë‚¸ë‹¤.
 	while (j < array->length)
 	{
 		memcpy(((char*)front) + (i * size), ((char*)array->front) + (j * size), size);
 		i++;
 		j++;
 	}
-	//4. ÇÒ´çÇØÁ¦ÇÑ´Ù.
+	//4. í• ë‹¹í•´ì œí•œë‹¤.
 	if (array->front != NULL)
 	{
 		free(array->front);
 	}
-	//5. »ğÀÔÇÑ´Ù.
+	//5. ì‚½ì…í•œë‹¤.
 	array->front = front;
 	array->capacity++;
 	memcpy(((char*)array->front) + (index * size), object, size);
 	array->length++;
-	//6. À§Ä¡¸¦ Ãâ·ÂÇÑ´Ù.
+	//6. ìœ„ì¹˜ë¥¼ ì¶œë ¥í•œë‹¤.
 	return index;
-	//7. ³¡³»´Ù.
+	//7. ëë‚´ë‹¤.
 }
 
 //AppendFromRear
@@ -116,29 +116,29 @@ Long AppendFromRear(Array* array, void* object, size_t size)
 	void(*front);
 	Long i = 0;
 
-	//1. object¸¦ ÀÔ·Â¹Ş´Â´Ù.
-	//2. »õ ¹è¿­À» ¸¸µç´Ù.
+	//1. objectë¥¼ ì…ë ¥ë°›ëŠ”ë‹¤.
+	//2. ìƒˆ ë°°ì—´ì„ ë§Œë“ ë‹¤.
 	front = calloc(array->capacity + 1, size);
-	//3. ±âÁ¸ ¹è¿­À» ¿Å°ÜÀû´Â´Ù.
+	//3. ê¸°ì¡´ ë°°ì—´ì„ ì˜®ê²¨ì ëŠ”ë‹¤.
 	while (i < array->length)
 	{
 		memcpy(((char*)front) + (i * size), ((char*)array->front) + (i * size), size);
 		i++;
 	}
-	//4. ±âÁ¸ ¹è¿­À» Áö¿î´Ù.
+	//4. ê¸°ì¡´ ë°°ì—´ì„ ì§€ìš´ë‹¤.
 	if (array->front != NULL)
 	{
 		free(array->front);
 	}
-	//5. object¸¦ »ğÀÔÇÑ´Ù.
+	//5. objectë¥¼ ì‚½ì…í•œë‹¤.
 	array->front = front;
 	array->capacity++;
 	index = array->capacity - 1;
 	memcpy(((char*)array->front) + (index * size), object, size);
 	array->length++;
-	//6. À§Ä¡¸¦ Ãâ·ÂÇÑ´Ù.
+	//6. ìœ„ì¹˜ë¥¼ ì¶œë ¥í•œë‹¤.
 	return index;
-	//7. ³¡³»´Ù.
+	//7. ëë‚´ë‹¤.
 }
 
 //Delete
@@ -148,14 +148,14 @@ Long Delete(Array* array, Long index, size_t size)
 	Long i = 0;
 	Long j = 0;
 
-	//1. À§Ä¡¸¦ ÀÔ·Â¹Ş´Â´Ù.
-	//2. ÇÒ´ç·®ÀÌ 1º¸´Ù Å©¸é
+	//1. ìœ„ì¹˜ë¥¼ ì…ë ¥ë°›ëŠ”ë‹¤.
+	//2. í• ë‹¹ëŸ‰ì´ 1ë³´ë‹¤ í¬ë©´
 	if (array->capacity > 1)
 	{
-		//2.1 »õ ¹è¿­À» ¸¸µç´Ù.
+		//2.1 ìƒˆ ë°°ì—´ì„ ë§Œë“ ë‹¤.
 		front = calloc(array->capacity - 1, size);
 	}
-	//3. ±âÁ¸ ¹è¿­ÀÇ ³»¿ëÀ» ¿Å°ÜÀû´Â´Ù.
+	//3. ê¸°ì¡´ ë°°ì—´ì˜ ë‚´ìš©ì„ ì˜®ê²¨ì ëŠ”ë‹¤.
 	while (i < index)
 	{
 		memcpy(((char*)front) + (j * size), ((char*)array->front) + (i * size), size);
@@ -169,26 +169,26 @@ Long Delete(Array* array, Long index, size_t size)
 		j++;
 		i++;
 	}
-	//4. ±âÁ¸ ¹è¿­À» Áö¿î´Ù.
+	//4. ê¸°ì¡´ ë°°ì—´ì„ ì§€ìš´ë‹¤.
 	if (array->front != NULL)
 	{
 		free(array->front);
 		array->front = NULL;
 	}
-	//5. ÇÒ´ç·®ÀÌ 1º¸´Ù Å©¸é
+	//5. í• ë‹¹ëŸ‰ì´ 1ë³´ë‹¤ í¬ë©´
 	if (array->capacity > 1)
 	{
-		//5.1 »õ¹è¿­ÀÇ ÁÖ¼Ò¸¦ ÀúÀåÇÑ´Ù.
+		//5.1 ìƒˆë°°ì—´ì˜ ì£¼ì†Œë¥¼ ì €ì¥í•œë‹¤.
 		array->front = front;
 	}
-	//6. ÇÒ´ç·®À» °¨¼Ò½ÃÅ²´Ù.
+	//6. í• ë‹¹ëŸ‰ì„ ê°ì†Œì‹œí‚¨ë‹¤.
 	array->capacity--;
-	//7. »ç¿ë·®À» °¨¼Ò½ÃÅ²´Ù.
+	//7. ì‚¬ìš©ëŸ‰ì„ ê°ì†Œì‹œí‚¨ë‹¤.
 	array->length--;
-	//8. À§Ä¡¸¦ Ãâ·ÂÇÑ´Ù.
+	//8. ìœ„ì¹˜ë¥¼ ì¶œë ¥í•œë‹¤.
 	index = -1;
 	return index;
-	//8. ³¡³»´Ù.
+	//8. ëë‚´ë‹¤.
 }
 
 //DeleteFromFront
@@ -199,39 +199,39 @@ Long DeleteFromFront(Array* array, size_t size)
 	Long i = 1;
 	Long j = 0;
 	
-	//1. ÇÒ´ç·®ÀÌ 1º¸´Ù Å©¸é
+	//1. í• ë‹¹ëŸ‰ì´ 1ë³´ë‹¤ í¬ë©´
 	if (array->capacity > 1)
 	{
-		//1.1 »õ ¹è¿­À» ¸¸µç´Ù.
+		//1.1 ìƒˆ ë°°ì—´ì„ ë§Œë“ ë‹¤.
 		front = calloc(array->capacity - 1, size);
 	}
-	//2. ±âÁ¸ ¹è¿­ÀÇ ³»¿ëÀ» ¿Å°ÜÀû´Â´Ù.
+	//2. ê¸°ì¡´ ë°°ì—´ì˜ ë‚´ìš©ì„ ì˜®ê²¨ì ëŠ”ë‹¤.
 	while (i < array->length)
 	{
 		memcpy(((char*)front) + (j * size), ((char*)array->front) + (i * size), size);
 		j++;
 		i++;
 	}
-	//3. ±âÁ¸ ¹è¿­À» Áö¿î´Ù.
+	//3. ê¸°ì¡´ ë°°ì—´ì„ ì§€ìš´ë‹¤.
 	if (array->front != NULL)
 	{
 		free(array->front);
 		array->front = NULL;
 	}
-	//4. ÇÒ´ç·®ÀÌ 1º¸´Ù Å©¸é
+	//4. í• ë‹¹ëŸ‰ì´ 1ë³´ë‹¤ í¬ë©´
 	if (array->capacity > 1)
 	{
-		//4.1 »õ¹è¿­ÀÇ ÁÖ¼Ò¸¦ ÀúÀåÇÑ´Ù.
+		//4.1 ìƒˆë°°ì—´ì˜ ì£¼ì†Œë¥¼ ì €ì¥í•œë‹¤.
 		array->front = front;
 	}
-	//5. ÇÒ´ç·®À» °¨¼Ò½ÃÅ²´Ù.
+	//5. í• ë‹¹ëŸ‰ì„ ê°ì†Œì‹œí‚¨ë‹¤.
 	array->capacity--;
-	//6. »ç¿ë·®À» °¨¼Ò½ÃÅ²´Ù.
+	//6. ì‚¬ìš©ëŸ‰ì„ ê°ì†Œì‹œí‚¨ë‹¤.
 	array->length--;
-	//7. À§Ä¡¸¦ Ãâ·ÂÇÑ´Ù.
+	//7. ìœ„ì¹˜ë¥¼ ì¶œë ¥í•œë‹¤.
 	index = -1;
 	return index;
-	//8. ³¡³»´Ù.
+	//8. ëë‚´ë‹¤.
 }
 
 //DeleteFromRear
@@ -241,64 +241,64 @@ Long DeleteFromRear(Array* array, size_t size)
 	void(*front) = NULL;
 	Long i = 0;
 	
-	//1. ÇÒ´ç·®ÀÌ 1º¸´Ù Å©¸é
+	//1. í• ë‹¹ëŸ‰ì´ 1ë³´ë‹¤ í¬ë©´
 	if (array->capacity > 1)
 	{
-		//1.1 »õ ¹è¿­À» ¸¸µç´Ù.
+		//1.1 ìƒˆ ë°°ì—´ì„ ë§Œë“ ë‹¤.
 		front = calloc(array->capacity - 1, size);
 	}
-	//2. ±âÁ¸ ¹è¿­ÀÇ ³»¿ëÀ» ¿Å°ÜÀû´Â´Ù.
+	//2. ê¸°ì¡´ ë°°ì—´ì˜ ë‚´ìš©ì„ ì˜®ê²¨ì ëŠ”ë‹¤.
 	while (i < array->capacity-1)
 	{
 		memcpy(((char*)front) + (i * size), ((char*)array->front) + (i * size), size);
 		i++;
 	}
-	//3. ±âÁ¸ ¹è¿­À» Áö¿î´Ù.
+	//3. ê¸°ì¡´ ë°°ì—´ì„ ì§€ìš´ë‹¤.
 	if (array->front != NULL)
 	{
 		free(array->front);
 		array->front = NULL;
 	}
-	//4. ÇÒ´ç·®ÀÌ 1º¸´Ù Å©¸é
+	//4. í• ë‹¹ëŸ‰ì´ 1ë³´ë‹¤ í¬ë©´
 	if (array->capacity > 1)
 	{
-		//4.1 »õ¹è¿­ÀÇ ÁÖ¼Ò¸¦ ÀúÀåÇÑ´Ù.
+		//4.1 ìƒˆë°°ì—´ì˜ ì£¼ì†Œë¥¼ ì €ì¥í•œë‹¤.
 		array->front = front;
 	}
-	//5. ÇÒ´ç·®À» °¨¼Ò½ÃÅ²´Ù.
+	//5. í• ë‹¹ëŸ‰ì„ ê°ì†Œì‹œí‚¨ë‹¤.
 	array->capacity--;
-	//6. »ç¿ë·®À» °¨¼Ò½ÃÅ²´Ù.
+	//6. ì‚¬ìš©ëŸ‰ì„ ê°ì†Œì‹œí‚¨ë‹¤.
 	array->length--;
-	//7. À§Ä¡¸¦ Ãâ·ÂÇÑ´Ù.
+	//7. ìœ„ì¹˜ë¥¼ ì¶œë ¥í•œë‹¤.
 	return index;
-	//8. ³¡³»´Ù.
+	//8. ëë‚´ë‹¤.
 }
 
 //Clear
 void Clear(Array* array)
 {
-	//1. ¹è¿­À» ÇÒ´çÇØÁ¦ÇÑ´Ù.
+	//1. ë°°ì—´ì„ í• ë‹¹í•´ì œí•œë‹¤.
 	if (array->front != NULL)
 	{
 		free(array->front);
 		array->front = NULL;
 	}
-	//2. ÇÒ´ç·®À» 0À¸·Î Á¤ÇÑ´Ù.
+	//2. í• ë‹¹ëŸ‰ì„ 0ìœ¼ë¡œ ì •í•œë‹¤.
 	array->capacity = 0;
-	//3. »ç¿ë·®À» 0À¸·Î Á¤ÇÑ´Ù.
+	//3. ì‚¬ìš©ëŸ‰ì„ 0ìœ¼ë¡œ ì •í•œë‹¤.
 	array->length = 0;
-	//4. ³¡³»´Ù.
+	//4. ëë‚´ë‹¤.
 }
 
 //Modify
 Long Modify(Array* array, Long index, void* object, size_t size)
 {
-	//1. À§Ä¡¿Í ´ë»óÀ» ÀÔ·Â¹Ş´Â´Ù.
-	//2. À§Ä¡¿¡¼­ ¼öÁ¤ÇÑ´Ù.
+	//1. ìœ„ì¹˜ì™€ ëŒ€ìƒì„ ì…ë ¥ë°›ëŠ”ë‹¤.
+	//2. ìœ„ì¹˜ì—ì„œ ìˆ˜ì •í•œë‹¤.
 	memcpy(((char*)array->front) + (index * size), object, size);
-	//3. À§Ä¡¸¦ Ãâ·ÂÇÑ´Ù.
+	//3. ìœ„ì¹˜ë¥¼ ì¶œë ¥í•œë‹¤.
 	return index;
-	//4. ³¡³»´Ù.
+	//4. ëë‚´ë‹¤.
 }
 
 //LinearSearchUnique
@@ -307,21 +307,21 @@ Long LinearSearchUnique(Array* array, void* key, size_t size, int (*compare)(voi
 	Long index = -1;
 	Long i = 0;
 
-	//1. Ã£°íÀÚ ÇÏ´Â °ªÀ» ÀÔ·Â¹Ş´Â´Ù.
-	//2. »ç¿ë·®º¸´Ù ÀÛ°Å³ª °°Àºµ¿¾È ±×¸®°í Ã£°íÀÚ ÇÏ´Â °ª°ú °°Áö ¾ÊÀº µ¿¾È ¹İº¹ÇÑ´Ù.
+	//1. ì°¾ê³ ì í•˜ëŠ” ê°’ì„ ì…ë ¥ë°›ëŠ”ë‹¤.
+	//2. ì‚¬ìš©ëŸ‰ë³´ë‹¤ ì‘ê±°ë‚˜ ê°™ì€ë™ì•ˆ ê·¸ë¦¬ê³  ì°¾ê³ ì í•˜ëŠ” ê°’ê³¼ ê°™ì§€ ì•Šì€ ë™ì•ˆ ë°˜ë³µí•œë‹¤.
 	while (i < array->length && compare(((char*)array->front) + (i * size), key) != 0)
 	{
-		//2.1 À§Ä¡¸¦ ¼¾´Ù.
+		//2.1 ìœ„ì¹˜ë¥¼ ì„¼ë‹¤.
 		i++;
 	}
-	//3. À§Ä¡¸¦ ÀúÀåÇÑ´Ù.
+	//3. ìœ„ì¹˜ë¥¼ ì €ì¥í•œë‹¤.
 	if (i < array->length)
 	{
 		index = i;
 	}
-	//4. À§Ä¡¸¦ Ãâ·ÂÇÑ´Ù.
+	//4. ìœ„ì¹˜ë¥¼ ì¶œë ¥í•œë‹¤.
 	return index;
-	//5. ³¡³»´Ù.
+	//5. ëë‚´ë‹¤.
 }
 
 //LinearSearchDuplicate
@@ -333,39 +333,39 @@ void LinearSearchDuplicate(Array* array, void* key, Long* (*indexes), Long* coun
 
 	*indexes = NULL;
 	*count = 0;
-	//1. Ã£°íÀÚ ÇÏ´Â °ªÀ» ÀÔ·Â¹Ş´Â´Ù.
-	//2. »ç¿ë·®º¸´Ù ÀÛ°Å³ª °°Àºµ¿¾È ¹İº¹ÇÑ´Ù.
+	//1. ì°¾ê³ ì í•˜ëŠ” ê°’ì„ ì…ë ¥ë°›ëŠ”ë‹¤.
+	//2. ì‚¬ìš©ëŸ‰ë³´ë‹¤ ì‘ê±°ë‚˜ ê°™ì€ë™ì•ˆ ë°˜ë³µí•œë‹¤.
 	while (i < array->length)
 	{
-		//2.1 Ã£°íÀÚ ÇÏ´Â °ª°ú ¼­·Î °°À¸¸é
+		//2.1 ì°¾ê³ ì í•˜ëŠ” ê°’ê³¼ ì„œë¡œ ê°™ìœ¼ë©´
 		if (compare(((char*)array->front) + (i * size), key) == 0)
 		{
-			//2.1.1 °³¼ö¸¦ ¼¾´Ù.
+			//2.1.1 ê°œìˆ˜ë¥¼ ì„¼ë‹¤.
 			(*count)++;
 		}
 		i++;
 	}
-	//3, °³¼ö°¡ 0º¸´Ù Å©¸é
+	//3, ê°œìˆ˜ê°€ 0ë³´ë‹¤ í¬ë©´
 	if (*count > 0)
 	{
-		//3.1 À§Ä¡µé ¹è¿­À» ¸¸µç´Ù.
+		//3.1 ìœ„ì¹˜ë“¤ ë°°ì—´ì„ ë§Œë“ ë‹¤.
 		*indexes = (Long(*))calloc(*count, sizeof(Long));
 	}
 	i = 0;
-	//4. »ç¿ë·®º¸´Ù ÀÛ°Å³ª °°Àºµ¿¾È ¹İº¹ÇÑ´Ù.
+	//4. ì‚¬ìš©ëŸ‰ë³´ë‹¤ ì‘ê±°ë‚˜ ê°™ì€ë™ì•ˆ ë°˜ë³µí•œë‹¤.
 	while (i < array->length)
 	{
-		//4.1 Ã£°íÀÚ ÇÏ´Â °ª°ú ¼­·Î °°À¸¸é
+		//4.1 ì°¾ê³ ì í•˜ëŠ” ê°’ê³¼ ì„œë¡œ ê°™ìœ¼ë©´
 		if (compare(((char*)array->front) + (i * size), key) == 0)
 		{
-			//4.1.1 À§Ä¡¸¦ ÀúÀåÇÑ´Ù.
+			//4.1.1 ìœ„ì¹˜ë¥¼ ì €ì¥í•œë‹¤.
 			(*indexes)[j] = i;
 			j++;
 		}
 		i++;
 	}
-	//5. À§Ä¡µé°ú °³¼ö¸¦ Ãâ·ÂÇÑ´Ù.
-	//6 ³¡³»´Ù.
+	//5. ìœ„ì¹˜ë“¤ê³¼ ê°œìˆ˜ë¥¼ ì¶œë ¥í•œë‹¤.
+	//6 ëë‚´ë‹¤.
 }
 
 //BinarySearchUnique
@@ -376,36 +376,36 @@ Long BinarySearchUnique(Array* array, void* key, size_t size, int (*compare)(voi
 	Long middle;
 	Long last;
 
-	//1. Ã£°íÀÚ ÇÏ´Â °ªÀ» ÀÔ·Â¹Ş´Â´Ù.
-	//2.3 Áß°£ °ªÀ» ±¸ÇÑ´Ù.
+	//1. ì°¾ê³ ì í•˜ëŠ” ê°’ì„ ì…ë ¥ë°›ëŠ”ë‹¤.
+	//2.3 ì¤‘ê°„ ê°’ì„ êµ¬í•œë‹¤.
 	last = array->length - 1;
 	middle = (first + last) / 2;
-	//2. Ã³À½ÀÌ ¸¶Áö¸·º¸´Ù ÀÛ°Å³ª °°Àºµ¿¾È ±×¸®°í Ã£°íÀÚ ÇÏ´Â °ª°ú °°Áö ¾ÊÀºµ¿¾È ¹İº¹ÇÑ´Ù.
+	//2. ì²˜ìŒì´ ë§ˆì§€ë§‰ë³´ë‹¤ ì‘ê±°ë‚˜ ê°™ì€ë™ì•ˆ ê·¸ë¦¬ê³  ì°¾ê³ ì í•˜ëŠ” ê°’ê³¼ ê°™ì§€ ì•Šì€ë™ì•ˆ ë°˜ë³µí•œë‹¤.
 	while (first <= last && compare(((char*)array->front) + (middle * size), key) != 0)
 	{
-		//2.1 Ã£°íÀÚ ÇÏ´Â °ªÀÌ Áß°£º¸´Ù Å©¸é
+		//2.1 ì°¾ê³ ì í•˜ëŠ” ê°’ì´ ì¤‘ê°„ë³´ë‹¤ í¬ë©´
 		if (compare(((char*)array->front) + (middle * size), key) < 0)
 		{
-			//2.1.1 Ã¹ ¹øÂ° °ªÀ» Áõ°¡½ÃÅ²´Ù.
+			//2.1.1 ì²« ë²ˆì§¸ ê°’ì„ ì¦ê°€ì‹œí‚¨ë‹¤.
 			first = middle + 1;
 		}
-		//2.2 ±×·¸Áö ¾ÊÀ¸¸é
+		//2.2 ê·¸ë ‡ì§€ ì•Šìœ¼ë©´
 		else
 		{
-			//2.3.1 ¸¶Áö¸· °ªÀ» °¨¼Ò½ÃÅ²´Ù.
+			//2.3.1 ë§ˆì§€ë§‰ ê°’ì„ ê°ì†Œì‹œí‚¨ë‹¤.
 			last = middle - 1;
 		}
-		//2.3 Áß°£°ªÀ» ±¸ÇÑ´Ù.
+		//2.3 ì¤‘ê°„ê°’ì„ êµ¬í•œë‹¤.
 		middle = (first + last) / 2;
 	}
-	//3. À§Ä¡¸¦ ÀúÀåÇÑ´Ù.
+	//3. ìœ„ì¹˜ë¥¼ ì €ì¥í•œë‹¤.
 	if (first <= last)
 	{
 		index = middle;
 	}
-	//4. À§Ä¡¸¦ Ãâ·ÂÇÑ´Ù.
+	//4. ìœ„ì¹˜ë¥¼ ì¶œë ¥í•œë‹¤.
 	return index;
-	//5. ³¡³»´Ù.
+	//5. ëë‚´ë‹¤.
 }
 
 //BinarySearchDuplicate
@@ -419,31 +419,31 @@ void BinarySearchDuplicate(Array* array, void* key, Long* (*indexes), Long* coun
 	Long j = 0;
 
 	*count = 0;
-	//1. Ã£°íÀÚ ÇÏ´Â °ªÀ» ÀÔ·Â¹Ş´Â´Ù.
-	//2. À§Ä¡µé ¹è¿­À» ÇÒ´çÇÑ´Ù.
+	//1. ì°¾ê³ ì í•˜ëŠ” ê°’ì„ ì…ë ¥ë°›ëŠ”ë‹¤.
+	//2. ìœ„ì¹˜ë“¤ ë°°ì—´ì„ í• ë‹¹í•œë‹¤.
 	*indexes = (Long(*))calloc(array->length, sizeof(Long));
-	//3.3 Áß°£ °ªÀ» ±¸ÇÑ´Ù.
+	//3.3 ì¤‘ê°„ ê°’ì„ êµ¬í•œë‹¤.
 	last = array->length - 1;
 	middle = (first + last) / 2;
-	//3. first°¡ lastº¸´Ù ÀÛ°Å³ª °°Àºµ¿¾È ±×¸®°í Ã£°íÀÚ ÇÏ´Â °ª°ú °°Áö ¾ÊÀ» µ¿¾È ¹İº¹ÇÑ´Ù.
+	//3. firstê°€ lastë³´ë‹¤ ì‘ê±°ë‚˜ ê°™ì€ë™ì•ˆ ê·¸ë¦¬ê³  ì°¾ê³ ì í•˜ëŠ” ê°’ê³¼ ê°™ì§€ ì•Šì„ ë™ì•ˆ ë°˜ë³µí•œë‹¤.
 	while (first <= last && compare(((char*)array->front) + (middle * size), key) != 0)
 	{
-		//3.1 Áß°£Ç×º¸´Ù Ã£°íÀÚ ÇÏ´Â °ªÀÌ Å©¸é
+		//3.1 ì¤‘ê°„í•­ë³´ë‹¤ ì°¾ê³ ì í•˜ëŠ” ê°’ì´ í¬ë©´
 		if (compare(((char*)array->front) + (middle * size), key) < 0)
 		{
-			//3.1.1 Ã¹¹øÂ°¸¦ Áõ°¡½ÃÅ²´Ù.
+			//3.1.1 ì²«ë²ˆì§¸ë¥¼ ì¦ê°€ì‹œí‚¨ë‹¤.
 			first = middle + 1;
 		}
-		//3.2 ±×·¸Áö ¾ÊÀ¸¸é
+		//3.2 ê·¸ë ‡ì§€ ì•Šìœ¼ë©´
 		else
 		{
-			//3.2.1 ¸¶Áö¸·À» °¨¼Ò½ÃÅ²´Ù.
+			//3.2.1 ë§ˆì§€ë§‰ì„ ê°ì†Œì‹œí‚¨ë‹¤.
 			last = middle - 1;
 		}
-		//3.3 Áß°£°ªÀ» Áõ°¡½ÃÅ²´Ù.
+		//3.3 ì¤‘ê°„ê°’ì„ ì¦ê°€ì‹œí‚¨ë‹¤.
 		middle = (first + last) / 2;
 	}
-	//4. Áßº¹µÈ ¼öµéÀÇ À§Ä¡¸¦ ÀúÀåÇÑ´Ù.
+	//4. ì¤‘ë³µëœ ìˆ˜ë“¤ì˜ ìœ„ì¹˜ë¥¼ ì €ì¥í•œë‹¤.
 	i = middle - 1;
 	while (i >= 0 && compare(((char*)array->front) + (i * size), key) == 0)
 	{
@@ -457,8 +457,8 @@ void BinarySearchDuplicate(Array* array, void* key, Long* (*indexes), Long* coun
 		(*count)++;
 		i++;
 	}
-	//5. À§Ä¡µé°ú °³¼ö¸¦ Ãâ·ÂÇÑ´Ù.
-	//6. ³¡³»´Ù.
+	//5. ìœ„ì¹˜ë“¤ê³¼ ê°œìˆ˜ë¥¼ ì¶œë ¥í•œë‹¤.
+	//6. ëë‚´ë‹¤.
 }
 
 //SelectionSort
@@ -473,7 +473,7 @@ void SelectionSort(Array* array, size_t size, int (*compare)(void*, void*))
 	temp = malloc(size);
 	lowest = malloc(size);
 
-	//1. ¿À¸§Â÷¼øÀ¸·Î Á¤·ÄÇÑ´Ù.
+	//1. ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ì •ë ¬í•œë‹¤.
 	while (i < array->length - 1)
 	{
 		j = i + 1;
@@ -496,7 +496,7 @@ void SelectionSort(Array* array, size_t size, int (*compare)(void*, void*))
 		}
 		i++;
 	}
-	//2. ³¡³»´Ù.
+	//2. ëë‚´ë‹¤.
 	if (lowest != NULL)
 	{
 		free(lowest);
@@ -517,7 +517,7 @@ void BubbleSort(Array* array, size_t size, int (*compare)(void*, void*))
 
 	temp = malloc(size);
 	i = array->length - 2;
-	//1. ¿À¸§Â÷¼øÀ¸·Î Á¤·ÄÇÑ´Ù.
+	//1. ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ì •ë ¬í•œë‹¤.
 	while (i >= 0 && flag == ARRAY_TRUE)
 	{
 		flag = ARRAY_FALSE;
@@ -535,7 +535,7 @@ void BubbleSort(Array* array, size_t size, int (*compare)(void*, void*))
 		}
 		i--;
 	}
-	//2. ³¡³»´Ù.
+	//2. ëë‚´ë‹¤.
 	if (temp != NULL)
 	{
 		free(temp);
@@ -551,7 +551,7 @@ void InsertionSort(Array* array, size_t size, int (*compare)(void*, void*))
 
 	temp = malloc(size);
 
-	//1. ¿À¸§Â÷¼øÀ¸·Î Á¤·ÄÇÑ´Ù.
+	//1. ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ì •ë ¬í•œë‹¤.
 	while (i < array->length)
 	{
 		memcpy(temp, ((char*)array->front) + (i * size), size);
@@ -564,7 +564,7 @@ void InsertionSort(Array* array, size_t size, int (*compare)(void*, void*))
 		memcpy(((char*)array->front) + ((j + 1) * size), temp, size);
 		i++;
 	}
-	//2. ³¡³»´Ù.
+	//2. ëë‚´ë‹¤.
 	if (temp != NULL)
 	{
 		free(temp);
@@ -578,37 +578,37 @@ void Merge(Array* array, Array* one, Array* other, size_t size, int (*compare)(v
 	Long j = 0;
 	Long k = 0;
 	
-	//1. one, other ¹è¿­À» ÀÔ·Â¹Ş´Â´Ù.
-	//2. array ¹è¿­À» ÇÒ´çÇØÁ¦ÇÑ´Ù.
+	//1. one, other ë°°ì—´ì„ ì…ë ¥ë°›ëŠ”ë‹¤.
+	//2. array ë°°ì—´ì„ í• ë‹¹í•´ì œí•œë‹¤.
 	if (array->front != NULL)
 	{
 		free(array->front);
 	}
-	//3. array¹è¿­À» »õ·Î ¸¸µç´Ù.
+	//3. arrayë°°ì—´ì„ ìƒˆë¡œ ë§Œë“ ë‹¤.
 	array->front = calloc(one->length + other->length, size);
 	array->capacity = one->length + other->length;
 	array->length = 0;
-	//4. legnth º¸´Ù ÀÛÀºµ¿¾È ¹İº¹ÇÑ´Ù.
+	//4. legnth ë³´ë‹¤ ì‘ì€ë™ì•ˆ ë°˜ë³µí•œë‹¤.
 	while (i < one->length && j < other->length)
 	{
-		//4.1 one ¹è¿­Ç×¸ñÀÌ other ¹è¿­Ç×¸ñº¸´Ù Å©¸é
+		//4.1 one ë°°ì—´í•­ëª©ì´ other ë°°ì—´í•­ëª©ë³´ë‹¤ í¬ë©´
 		if (compare(((char*)one->front) + (i * size), ((char*)other->front) + (j * size)) > 0)
 		{
-			//4.1.1 other ¹è¿­Ç×¸ñÀ» ÀúÀåÇÑ´Ù.
+			//4.1.1 other ë°°ì—´í•­ëª©ì„ ì €ì¥í•œë‹¤.
 			memcpy(((char*)array->front) + (k * size), ((char*)other->front) + (j * size), size);
 			k++;
 			j++;
 		}
-		//4.2 ±×·¸Áö ¾ÊÀ¸¸é
+		//4.2 ê·¸ë ‡ì§€ ì•Šìœ¼ë©´
 		else
 		{
-			//4.2.1 one ¹è¿­ Ç×¸ñÀ» ÀúÀåÇÑ´Ù.
+			//4.2.1 one ë°°ì—´ í•­ëª©ì„ ì €ì¥í•œë‹¤.
 			memcpy(((char*)array->front) + (k * size), ((char*)one->front) + (i * size), size);
 			k++;
 			i++;
 		}
 	}
-	//5. lengthº¸´Ù ÀÛÀºµ¿¾È ¹İº¹ÇÑ´Ù.
+	//5. lengthë³´ë‹¤ ì‘ì€ë™ì•ˆ ë°˜ë³µí•œë‹¤.
 	while (i < one->length)
 	{
 		memcpy(((char*)array->front) + (k * size), ((char*)one->front) + (i * size), size);
@@ -621,18 +621,18 @@ void Merge(Array* array, Array* one, Array* other, size_t size, int (*compare)(v
 		k++;
 		j++;
 	}
-	//6. »ç¿ë·®À» Áõ°¡½ÃÅ²´Ù.
+	//6. ì‚¬ìš©ëŸ‰ì„ ì¦ê°€ì‹œí‚¨ë‹¤.
 	array->length = one->length + other->length;
-	//7. ³¡³»´Ù.
+	//7. ëë‚´ë‹¤.
 }
 
 //Destroy
 void Destroy(Array* array)
 {
-	//1. ¹è¿­À» ÇÒ´çÇØÁ¦ÇÑ´Ù.
+	//1. ë°°ì—´ì„ í• ë‹¹í•´ì œí•œë‹¤.
 	if (array->front != NULL)
 	{
 		free(array->front);
 	}
-	//2. ³¡³»´Ù.
+	//2. ëë‚´ë‹¤.
 }
