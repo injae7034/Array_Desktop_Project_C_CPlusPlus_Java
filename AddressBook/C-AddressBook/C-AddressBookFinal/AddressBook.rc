@@ -13,7 +13,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// «—±πæÓ(¥Î«—πŒ±π) resources
+// ÌïúÍµ≠Ïñ¥(ÎåÄÌïúÎØºÍµ≠) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
 LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
@@ -52,35 +52,35 @@ END
 
 IDD_ADDRESSBOOKFORM DIALOGEX 0, 0, 310, 176
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "¡÷º“∑œ"
+CAPTION "Ï£ºÏÜåÎ°ù"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    GROUPBOX        "∞≥¿Œ",IDC_STATIC_PERSONAL,15,16,219,69
-    LTEXT           "º∫        ∏Ì",IDC_STATIC_NAME,21,28,36,10
-    LTEXT           "¡÷        º“",IDC_STATIC_ADDRESS,21,42,37,10
-    LTEXT           "¿¸»≠   π¯»£",IDC_STATIC_TELEPHONENUMBER,21,56,36,10
-    LTEXT           "¿Ã∏ﬁ¿œ¡÷º“",IDC_STATIC_EMAILADDRESS,21,70,37,10
+    GROUPBOX        "Í∞úÏù∏",IDC_STATIC_PERSONAL,15,16,219,69
+    LTEXT           "ÏÑ±        Î™Ö",IDC_STATIC_NAME,21,28,36,10
+    LTEXT           "Ï£º        ÏÜå",IDC_STATIC_ADDRESS,21,42,37,10
+    LTEXT           "Ï†ÑÌôî   Î≤àÌò∏",IDC_STATIC_TELEPHONENUMBER,21,56,36,10
+    LTEXT           "Ïù¥Î©îÏùºÏ£ºÏÜå",IDC_STATIC_EMAILADDRESS,21,70,37,10
     EDITTEXT        IDC_EDIT_NAME,60,28,91,10,ES_AUTOHSCROLL
     EDITTEXT        IDC_EDIT_EMAILADDRESS,60,70,135,10,ES_AUTOHSCROLL
     EDITTEXT        IDC_EDIT_TELEPHONENUMBER,60,56,121,10,ES_AUTOHSCROLL
     EDITTEXT        IDC_EDIT_ADDRESS,60,42,160,10,ES_AUTOHSCROLL
-    PUSHBUTTON      "±‚¿Á«œ±‚",IDC_BUTTON_RECORD,248,15,40,12
-    PUSHBUTTON      "√£      ±‚",IDC_BUTTON_FIND,248,30,40,12
-    PUSHBUTTON      "∞Ìƒ°±‚",IDC_BUTTON_CORRECT,248,45,40,12
-    PUSHBUTTON      "¡ˆøÏ±‚",IDC_BUTTON_ERASE,248,60,40,12
-    PUSHBUTTON      "¡§∏Æ«œ±‚",IDC_BUTTON_ARRANGE,248,75,40,12
+    PUSHBUTTON      "Í∏∞Ïû¨ÌïòÍ∏∞",IDC_BUTTON_RECORD,248,15,40,12
+    PUSHBUTTON      "Ï∞æ      Í∏∞",IDC_BUTTON_FIND,248,30,40,12
+    PUSHBUTTON      "Í≥†ÏπòÍ∏∞",IDC_BUTTON_CORRECT,248,45,40,12
+    PUSHBUTTON      "ÏßÄÏö∞Í∏∞",IDC_BUTTON_ERASE,248,60,40,12
+    PUSHBUTTON      "Ï†ïÎ¶¨ÌïòÍ∏∞",IDC_BUTTON_ARRANGE,248,75,40,12
     CONTROL         "",IDC_LIST_PERSONALS,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,15,93,219,69
 END
 
 IDD_FINDINGFORM DIALOGEX 0, 0, 310, 176
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "√£±‚"
+CAPTION "Ï∞æÍ∏∞"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    GROUPBOX        "∞≥¿Œ",IDC_STATIC_PERSONAL,20,20,210,51
-    LTEXT           "º∫∏Ì",IDC_STATIC_NAME,52,42,15,12
+    GROUPBOX        "Í∞úÏù∏",IDC_STATIC_PERSONAL,20,20,210,51
+    LTEXT           "ÏÑ±Î™Ö",IDC_STATIC_NAME,52,42,15,12
     EDITTEXT        IDC_EDIT_NAME,79,40,97,12,ES_AUTOHSCROLL
-    PUSHBUTTON      "√£        ±‚",IDC_BUTTON_FIND,244,32,45,12
+    PUSHBUTTON      "Ï∞æ        Í∏∞",IDC_BUTTON_FIND,244,32,45,12
     CONTROL         "",IDC_LIST_PERSONALS,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,20,85,210,70
 END
 
@@ -127,7 +127,7 @@ BEGIN
     0
 END
 
-#endif    // «—±πæÓ(¥Î«—πŒ±π) resources
+#endif    // ÌïúÍµ≠Ïñ¥(ÎåÄÌïúÎØºÍµ≠) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
