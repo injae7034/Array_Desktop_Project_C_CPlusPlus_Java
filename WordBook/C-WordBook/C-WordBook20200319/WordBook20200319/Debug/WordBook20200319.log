@@ -1,0 +1,6 @@
+﻿  Form.c
+C:\Users\injae\Downloads\코딩\C language\Visual Studio 2019 project\repos\WordBook20200319\WordBook20200319\Form.c(41,8): warning C4013: 'system'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+C:\Users\injae\Downloads\코딩\C language\Visual Studio 2019 project\repos\WordBook20200319\WordBook20200319\Form.c(90,45): warning C4013: 'gets'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
+  WordBook.c
+  코드를 생성하고 있습니다...
+  WordBook20200319.vcxproj -> C:\Users\injae\Downloads\코딩\C language\Visual Studio 2019 project\repos\WordBook20200319\Debug\WordBook20200319.exe
