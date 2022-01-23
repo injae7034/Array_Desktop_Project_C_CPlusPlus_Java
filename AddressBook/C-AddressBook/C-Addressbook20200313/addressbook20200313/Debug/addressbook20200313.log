@@ -1,6 +1,0 @@
-﻿  AddressBook.c
-  Form.c
-C:\Users\injae\Downloads\코딩\C language\Visual Studio 2019 project\C++\addressbook20200313\addressbook20200313\Form.c(37,11): warning C4013: 'system'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-C:\Users\injae\Downloads\코딩\C language\Visual Studio 2019 project\C++\addressbook20200313\addressbook20200313\Form.c(68,66): warning C4013: 'gets'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-  코드를 생성하고 있습니다...
-  addressbook20200313.vcxproj -> C:\Users\injae\Downloads\코딩\C language\Visual Studio 2019 project\C++\addressbook20200313\Debug\addressbook20200313.exe
