@@ -1,0 +1,7 @@
+﻿  AddressBook.c
+  AddressBookForm.c
+C:\Users\injae\Downloads\코딩\C language\Visual Studio 2019 project\C++\AddressBook20200406\AddressBook20200406\AddressBookForm.c(299,15): warning C4101: 'addressBook' :참조되지 않은 지역 변수입니다.
+  FindingForm.c
+C:\Users\injae\Downloads\코딩\C language\Visual Studio 2019 project\C++\AddressBook20200406\AddressBook20200406\FindingForm.c(138,15): warning C4101: 'addressBook' :참조되지 않은 지역 변수입니다.
+  코드를 생성하고 있습니다...
+  AddressBook20200406.vcxproj -> C:\Users\injae\Downloads\코딩\C language\Visual Studio 2019 project\C++\AddressBook20200406\Debug\AddressBook20200406.exe
