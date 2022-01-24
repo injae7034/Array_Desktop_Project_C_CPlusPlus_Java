@@ -173,7 +173,7 @@ public class AddressBook  implements Cloneable
                     //endIndex = personalInformation.indexOf(",", beginIndex);
 
                     //emailAddress 문자열을 구한다.(더이상 ,가 없으므로 personalInformation의 길이가 endIndex임)
-                    emailAddress = personalInformation.substring(beginIndex, personalInformation.length());
+                    emailAddress = personalInformation.substring(beginIndex);
                     //새로운 Personal객체를 생성한다.
                     personal = new Personal(name, address , telephoneNumber, emailAddress);
                     //새로 생성한 Personal객체를 ArrayList<Personal>에 추가한다.
