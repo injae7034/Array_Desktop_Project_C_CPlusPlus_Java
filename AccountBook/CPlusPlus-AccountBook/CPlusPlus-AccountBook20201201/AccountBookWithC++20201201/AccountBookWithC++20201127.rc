@@ -1,0 +1,194 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "winres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 한국어(대한민국) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
+LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
+#pragma code_page(949)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""winres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ACCOUNTBOOKFORM DIALOGEX 0, 0, 360, 310
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "가계부"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "장부",IDC_STATIC_ACCOUNT,20,20,240,159
+    GROUPBOX        "구분",IDC_STATIC_SORTION,75,35,140,30
+    CONTROL         "수입",IDC_RADIO_INCOME,"Button",BS_AUTORADIOBUTTON | WS_GROUP,100,47,25,10
+    CONTROL         "지출",IDC_RADIO_OUTGO,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,160,47,25,10
+    CTEXT           "일자",IDC_STATIC_DATE,75,75,15,10
+    CONTROL         "",IDC_DATETIMEPICKER_ONE,"SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,110,73,100,12
+    CTEXT           "적요",IDC_STATIC_BRIEFS,75,95,15,10
+    EDITTEXT        IDC_EDIT_BRIEFS,110,93,100,12,ES_AUTOHSCROLL
+    CTEXT           "금액",IDC_STATIC_AMOUNT,75,115,15,10
+    EDITTEXT        IDC_EDIT_AMOUNT,110,113,70,12,ES_AUTOHSCROLL
+    CTEXT           "잔액",IDC_STATIC_BALANCE,75,135,15,10
+    CTEXT           "비고",IDC_STATIC_REMARKS,75,155,15,10
+    EDITTEXT        IDC_EDIT_REMARKS,110,153,100,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "기재하기",IDC_BUTTON_RECORD,280,25,40,20
+    PUSHBUTTON      "찾    기",IDC_BUTTON_FIND,280,65,40,20
+    PUSHBUTTON      "고 치 기",IDC_BUTTON_CORRECT,280,105,40,20
+    CONTROL         "",IDC_LIST_ACCOUNTS,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,20,190,240,100
+    LTEXT           "",IDC_STATIC_EDIT_BALANCE,110,135,70,10
+END
+
+IDD_FINDINGFORM DIALOGEX 0, 0, 350, 270
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "찾기"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "검색조건",IDC_STATIC_CONDITION,20,20,240,70
+    CONTROL         "일자",IDC_CHECK_DATE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,40,36,25,10
+    CONTROL         "적요",IDC_CHECK_BRIEFS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,40,64,25,10
+    CONTROL         "",IDC_DATETIMEPICKER_ONE,"SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,80,34,65,15
+    LTEXT           "~",IDC_STATIC_BETWEEN,155,38,8,8
+    CONTROL         "",IDC_DATETIMEPICKER_OTHER,"SysDateTimePick32",DTS_RIGHTALIGN | WS_TABSTOP,170,34,65,15
+    EDITTEXT        IDC_EDIT_BRIEFS,80,63,100,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "찾    기",IDC_BUTTON_FIND,280,25,40,20
+    PUSHBUTTON      "정산하기",IDC_BUTTON_CALCULATE,280,70,40,20
+    CONTROL         "",IDC_LIST_ACCOUNTS,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,20,100,240,100
+    GROUPBOX        "정산",IDC_STATIC_CALCULATION,15,210,250,45
+    CTEXT           "총수입 :",IDC_STATIC_TOTALINCOME,20,230,25,10
+    CTEXT           "총지출 :",IDC_STATIC_TOTALOUTGO,100,230,25,10
+    CTEXT           "총잔액 :",IDC_STATIC_TOTALBALANCE,185,230,25,10
+    LTEXT           "",IDC_STATIC_EDIT_TOTALINCOME,50,230,45,10
+    LTEXT           "",IDC_STATIC_EDIT_TOTALOUTGO,130,230,45,10
+    LTEXT           "",IDC_STATIC_EDIT_TOTALBALANCE,215,230,45,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_ACCOUNTBOOKFORM, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 353
+        TOPMARGIN, 10
+        BOTTOMMARGIN, 300
+    END
+
+    IDD_FINDINGFORM, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 343
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 263
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_ACCOUNTBOOKFORM AFX_DIALOG_LAYOUT
+BEGIN
+    0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    100, 100, 100, 100,
+    0, 0, 0, 0
+END
+
+IDD_FINDINGFORM AFX_DIALOG_LAYOUT
+BEGIN
+    0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    100, 100, 100, 100,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0
+END
+
+#endif    // 한국어(대한민국) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
