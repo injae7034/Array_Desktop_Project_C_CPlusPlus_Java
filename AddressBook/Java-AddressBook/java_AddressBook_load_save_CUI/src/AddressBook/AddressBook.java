@@ -3,6 +3,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Collections;
+import java.util.StringTokenizer;
 
 public class AddressBook  implements Cloneable
 {
@@ -186,7 +187,7 @@ public class AddressBook  implements Cloneable
         return this.personals.size();
     }
      */
-
+/*
     //외부 파일에 있는 정보를 읽어서 AddressBook에 Load하기(split사용)
     public int load()
     {
@@ -205,18 +206,59 @@ public class AddressBook  implements Cloneable
                 //줄단위(Personal 객체단위)로 파일의 끝까지 읽는다.
                 while((personalInformation = bufferedReader.readLine()) != null)
                 {
-                    //외부파일에서 읽은 한 줄 데이터를 콤마(,)기준으로 분리한다.
+                   //외부파일에서 읽은 한 줄 데이터를 콤마(,)기준으로 분리한다.
                     tokens = personalInformation.split(",");
-                    //새로운 Personal객체를 생성한다.
-                    personal = new Personal(tokens[0], tokens[1], tokens[2], tokens[3]);
-                    //새로 생성한 Personal객체를 ArrayList<Personal>에 추가한다.
-                    this.personals.add(personal);
+                    //콤마(,)기준으로 분리한 데이터가 4개이면
+                    if(tokens.length == 4)
+                    {
+                        //새로운 Personal객체를 생성한다.
+                        personal = new Personal(tokens[0], tokens[1], tokens[2], tokens[3]);
+                        //새로 생성한 Personal객체를 ArrayList<Personal>에 추가한다.
+                        this.personals.add(personal);
+                    }
                 }
             } catch (IOException e) {e.printStackTrace();}
         }
         //load한 Personal객체 수를 반환한다.
         return this.personals.size();
     }
+ */
+    //외부 파일에 있는 정보를 읽어서 AddressBook에 Load하기(StringTokenizer사용하기)
+    public int load()
+    {
+        //해당위치에 있는 data를 읽어 File객체를 생성한다.
+        File file = new File("AddressBook.txt");
+        //해당위치에 파일이 존재하면
+        if(file.exists() == true)
+        {
+            //입력을 위한 스트림을 생성한다.
+            try (Reader reader = new FileReader(file);
+                 BufferedReader bufferedReader = new BufferedReader(reader);) {
+                Personal personal;
+                //줄단위(Personal 객체단위)로 읽는다.
+                String personalInformation;//한줄단위로 읽은 데이터를 저장할 임시공간
+                StringTokenizer tokens = null;//분리된 문자열들을 저장할 배열
+                //줄단위(Personal 객체단위)로 파일의 끝까지 읽는다.
+                while((personalInformation = bufferedReader.readLine()) != null)
+                {
+                    //외부파일에서 읽은 한 줄 데이터를 콤마(,)기준으로 분리한다.
+                    tokens = new StringTokenizer(personalInformation, ",");
+                    //콤마(,)기준으로 분리한 데이터가 4개가 맞으면
+                    if(tokens.countTokens() == 4)
+                    {
+                        //새로운 Personal객체를 생성한다.
+                        personal = new Personal(tokens.nextToken(), tokens.nextToken(),
+                                tokens.nextToken(), tokens.nextToken());
+                        //새로 생성한 Personal객체를 ArrayList<Personal>에 추가한다.
+                        this.personals.add(personal);
+                    }
+                }
+            } catch (IOException e) {e.printStackTrace();}
+        }
+        //load한 Personal객체 수를 반환한다.
+        return this.personals.size();
+    }
+
 
     //AddressBook에 있는 Personal객체 정보를 외부파일에 저장하기
     public void save()
