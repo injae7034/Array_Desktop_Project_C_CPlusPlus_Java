@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Java-AddressBook.iml" filepath="$PROJECT_DIR$/.idea/Java-AddressBook.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java_AddressBookPlusMySQL/java_AddressBookPlusMySQL.iml" filepath="$PROJECT_DIR$/java_AddressBookPlusMySQL/java_AddressBookPlusMySQL.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java_AddressBook_InitialVersion/java_AddressBook_InitialVersion.iml" filepath="$PROJECT_DIR$/java_AddressBook_InitialVersion/java_AddressBook_InitialVersion.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java_AddressBook_load_save_CUI/java_AddressBook_load_save_CUI.iml" filepath="$PROJECT_DIR$/java_AddressBook_load_save_CUI/java_AddressBook_load_save_CUI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java_AddressBook_plusClone/java_AddressBook_plusClone.iml" filepath="$PROJECT_DIR$/java_AddressBook_plusClone/java_AddressBook_plusClone.iml" />
+    </modules>
+  </component>
+</project>
